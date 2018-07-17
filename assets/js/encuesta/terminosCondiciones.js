@@ -1,0 +1,1 @@
+$(function(){redirectBrowser(),$(window).scroll(function(){$(this).scrollTop()>400?$(".scrollup").fadeIn():$(".scrollup").fadeOut()}),$(".scrollup").click(function(){return $("html, body").animate({scrollTop:0},600),!1});new BootstrapDialog({title:"Instancia del dialogo",message:"Mensaje generico"});$("#btnRegresar").click(function(){$(location).attr("href",base_url)})});

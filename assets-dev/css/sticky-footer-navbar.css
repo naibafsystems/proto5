@@ -1,0 +1,123 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    background-color: #EBEBEB;
+    /*Margin bottom by footer height*/
+    /*margin-bottom: 60px;*/
+}
+
+.container-header {
+    background-color: #FFF;
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 100%;
+}
+
+.container-navbar {
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 100%;
+}
+
+.container-footer {
+    /* Set the fixed height of the footer here */
+    background-color: #EBEBEB;
+    padding-left: 0px;
+    width: 100%;
+    z-index: -1;
+}
+
+#footer {
+    margin-top: 3px;
+}
+
+.footer-browser {
+    font-size: x-small;
+    text-align: center;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    /*padding: 170px 15px 0;*/
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+
+/* _________Navbar__________*/
+
+.navbar-default {
+    background-color: #EBEBEB;
+    border-color: transparent;
+}
+#login-navbar .navbar-header{
+    /* width: 20%;*/
+    /*margin: 0 40%;*/
+}
+.navbar-header {
+    height: 140px;
+    padding: 10px 0;
+}
+
+@media (max-width: 767px){
+    .navbar-header {
+        height: 80px;
+    }
+    /*body > .container {
+        padding: 80px 15px 0;
+    }*/
+}
+
+.navbar-inverse {
+    border: none;
+}
+
+/*.region-footer {
+    background-color: #424242;
+    bottom: 10px;
+    color: #FFF;
+}*/
+
+.navLogo {
+    background-color: #EBEBEB;
+    border: 5px solid #EBEBEB;
+    border-radius: 50%;
+    color: #FFF;
+    font-size: 1.5em;
+    height: 50px;
+    padding:5px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+}
+
+.breadcrumb {
+    background-color: #EBEBEB;
+}
+
+.btn-primary {
+    background-color: #0079a4;
+    border-color: #5d5d5d;
+}
+
+.btn-primary:active:focus,.btn-primary:active:hover,.btn-primary:hover {
+    background-color: #5d5d5d;
+    border-color: #474747;
+}

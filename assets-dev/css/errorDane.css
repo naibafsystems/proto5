@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/* CSS Document */
+
+@import
+url(http://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700);
+
+#contenedor-error {
+    width:100%;
+}
+#logotipo-dane {
+    padding: 15px 0px 0px 15px;
+    height: 130px;
+}
+.aviso-error {
+    padding-top:20px;
+    font-family: 'Roboto Slab', serif;
+    font-size:38px;
+    color:#4c4c4c;
+}
+.img-error{
+    margin:20px 0;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+.img-error:hover{
+    cursor:default;
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+}
+.texto-error1 {
+    font-family: 'Open Sans', Arial;
+    color:#4c4c4c;
+    font-weight: 300;
+    line-height:30px;
+    margin:0;
+}
+.texto-error2 {
+    font-family: 'Open Sans', Arial;
+    font-weight: 700;
+    color:#4c4c4c;
+    margin:0;
+}
+.border-texto-error {
+    border-bottom:1px solid #4c4c4c;
+    margin:5px 0;
+}
+.regreso-inicio{
+    font-family: 'Open Sans', Arial;
+    font-weight:300;
+    color: #b6004b;
+    font-size:15px;
+}
+.regreso-inicio:hover{
+    color: #e6007e;
+    text-decoration:none;
+    font-weight:400;
+}
+.contacto-web {
+    font-family: 'Open Sans', Arial;
+    font-weight:400;
+    color: #4c4c4c;
+    font-size:14px;
+    line-height:16px;
+    margin-top:60px;
+}
+.mail-contacto{
+    font-family: 'Open Sans', Arial;
+    font-weight:600;
+    color: #4c4c4c;
+    font-size:14px;
+    line-height:14px;
+    margin-bottom:40px;
+}
+.mail-contacto:hover{
+    color: #e6007e;
+    text-decoration:none;
+    font-weight:400;
+}
+.linea-institucional{
+    margin:30px 0;
+}
