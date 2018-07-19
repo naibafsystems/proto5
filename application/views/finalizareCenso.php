@@ -20,7 +20,7 @@ if(!empty($msgErrorFD)) {
                     <fieldset>
                         <legend class="acc-offscreen">Ya terminó todo el formulario. ¿Desea dar por finalizado el eCenso? Si lo finaliza ya no podrá modificar los datos.</legend>
                         <div class="form-group">
-                            <label id="finalizar_ecenso-lbl" class="control-label" for="finalizar_ecenso">Ya terminó todo el formulario. ¿Desea dar por finalizado el eCenso? Si lo finaliza ya no podrá modificar los datos.</label>
+                            <label id="finalizar_ecenso-lbl" class="control-label" for="finalizar_ecenso">Ya terminó todo el formulario. ¿Desea dar por finalizado el eCenso?<p size="50px" style="color:red;font-size:120%;">Si lo finaliza ya no podrá modificar los datos, ni diligenciar información de otros hogares.</p></label>
                             <div>
                                 <div class='radio' id='radio_finalizar_ecenso_1'>
                                     <label>

@@ -4,13 +4,12 @@ $(function () {
 
     $('#frmIngreso').validate({
         rules: {
-            usuario_soporte: {required: true, emailValido: true},
+            usuario_soporte: {required: true},
             contrasena: {required: true}
         },
         messages: {
             usuario_soporte: {
-                required: 'Digite su correo electr\u00f3nico.',
-                emailValido: 'No es una direcci\u00f3n de correo electr\u00f3nico v\u00e1lida'
+                required: 'Digite su usuario.'
             },
             contrasena: {required: 'Digite su contrase\u00f1a.'}
         },

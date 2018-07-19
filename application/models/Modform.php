@@ -1,4 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 //require_once APPPATH . 'libraries/predis/src/Autoloader.php';
 
@@ -24,10 +24,10 @@ class Modform extends CI_Model {
             'port'   => $this->config->item('redis_port'),
             'password' => $this->config->item('redis_password')
         ]);*/
-        $this->redis = new Redis();
+        /*$this->redis = new Redis();
         $this->redis->connect($this->config->item('redis_host'), $this->config->item('redis_port'));
         $this->redis->auth($this->config->item('redis_password'));
-        $this->redis->select($this->config->item('redis_database'));
+        $this->redis->select($this->config->item('redis_database'));*/
         //echo "Server is running: ".$this->redis->ping();
     }
 
@@ -48,18 +48,20 @@ class Modform extends CI_Model {
         //return false;
 
         //@mientras se desarrolla los formularios se recrea la llave preguntas
-        if(!$this->redis->exists($key)) {
+        //if(!$this->redis->exists($key)) {
             $arrPreguntas = $this->consultarPreguntas();
             if(!empty($arrPreguntas)) {
-                $this->redis->set($key, json_encode($arrPreguntas));
+                //$this->redis->set($key, json_encode($arrPreguntas));
             }
-        }
+        //}
 
-        if(!$this->redis->exists($key)) {
+        /*if(!$this->redis->exists($key)) {
             return $preguntas;
-        }
+        }*/
 
-        $preguntas = json_decode($this->redis->get($key), true);
+        //$preguntas = json_decode($this->redis->get($key), true);
+	$preguntas = $arrPreguntas;
+	 
         //pr($preguntas); exit;
         if(!empty($tabla)) {
             foreach ($preguntas[$tabla] as $kpt => $vpt) {
@@ -435,7 +437,7 @@ class Modform extends CI_Model {
         $i = 0;
         $bogo = false;
 
-        if($this->redis->exists($key) && !array_key_exists("sidx", $arrDatos)) {
+        /*if($this->redis->exists($key) && !array_key_exists("sidx", $arrDatos)) {
             $data = json_decode($this->redis->get($key), true);
 
             if (array_key_exists("valor", $arrDatos)) {
@@ -475,13 +477,14 @@ class Modform extends CI_Model {
                     }
                 }
             }
-        }
+        }*/
 
         /* validación para verificar si existe data consultadad de redis, o esta es menor a 5 opciones para cargar dede base de datos */
-        if (!isset($data) || count($data) < 5)
+        //if (!isset($data) || count($data) < 5)
             $bogo = true;
 
-        if(!$this->redis->exists($key) || $bogo) {
+        if($bogo) {
+
             if (array_key_exists("id", $arrDatos)) {
                 $cond .= " AND RD.ID_RESPUESTA_DOMINIO = '" . $arrDatos["id"] . "'";
             }

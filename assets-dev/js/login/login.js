@@ -7,14 +7,13 @@ $(function () {
 
     $('#frmIngreso').validate({
         rules: {
-            usuario: {required: true, emailValido: true},
+            usuario: {required: true},
             contrasena: {required: true},
             csrf_token: {required:false}
         },
         messages: {
             usuario: {
-                required: 'ERROR: correo electr\u00f3nico es obligatorio',
-                emailValido: 'ERROR: direcci\u00f3n de correo electr\u00f3nico no es v\u00e1lida'
+                required: 'ERROR: El usuario es obligatorio'
             },
             contrasena: {required: 'ERROR: contrase\u00f1a es obligatoria.'}
         },

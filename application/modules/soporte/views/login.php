@@ -20,11 +20,9 @@ if(!empty($msgErrorFD)) {
         <form id="frmIngreso" name="frmIngreso" class="form-signin" method="post">
             <input type="hidden" id="<?=$csrf['name']?>" name="<?=$csrf['name']?>" value="<?=$csrf['hash']?>" />
             <fieldset>
-                <input type="text" id="usuario_soporte" name="usuario_soporte" class="form-control" placeholder="Correo electrónico" required />
+                <input type="text" id="usuario_soporte" name="usuario_soporte" class="form-control" placeholder="Usuario" required />
                 <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="Contraseña" required />
-                <br/>
-                <div class="g-recaptcha" data-sitekey=""></div>
-                <div id='html_element'></div>
+            
                 <br/>
                 <button type="button" id="btnIngresar" name="btnIngresar" autofocus class="btn btn-dane-success" data-loading-text="Ingresar <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> "> Ingresar</button>
                 <div class="pull-right">

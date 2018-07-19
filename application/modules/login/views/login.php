@@ -48,7 +48,7 @@ if (!empty($msgErrorFD)) {
                         <input type="hidden" id="<?=$csrf['name']?>" name="<?=$csrf['name']?>" value="<?=$csrf['hash']?>" />
                         <div class="form-group">
                             <label for="email">Escriba su correo electrónico</label>
-                            <input type="email" class="form-control" id="usuario" name="usuario" placeholder="Correo electrónico" aria-required="true">
+                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" aria-required="true">
                         <!--<p>@</p>
                         <input type="email" class="form-control" id="compemail" placeholder="correo.com">-->
                         </div>
