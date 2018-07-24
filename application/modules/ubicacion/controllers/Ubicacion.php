@@ -1283,12 +1283,15 @@ class Ubicacion extends MX_Controller {
     }
 
     public function formNew() {
+        error_reporting(E_ALL & ~E_NOTICE);
         $this->load->model('vivienda/modvivienda', 'mvivi');
 
         $codiEncuesta = $this->session->userdata('codiEncuesta');
         $codiVivienda = $this->session->userdata('codiVivienda');
         $codiHogar = $this->session->userdata('codiHogar');
-        echo $codiEncuesta."---".$codiVivienda."++".$codiHogar;
+        $this->data['respuestas'] = $this->mvivi->respuestas($codiEncuesta);
+        //var_dump($this->data['respuestas']);
+//        echo $codiEncuesta."---".$codiVivienda."++".$codiHogar;
 
         $this->data['view'] = 'newForm';
         $this->load->view('layout', $this->data);

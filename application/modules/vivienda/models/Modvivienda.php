@@ -470,5 +470,24 @@ class Modvivienda extends My_model {
         $this->db->close();
         return $data;
     }
+
+    public function respuestas($codiEncuesta) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_VIVIENDA
+                WHERE COD_ENCUESTAS =  " . $codiEncuesta;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
 }
 //EOC

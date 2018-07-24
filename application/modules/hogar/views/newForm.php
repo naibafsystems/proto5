@@ -39,7 +39,7 @@
                         <label>Total de cuartos</label>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">                       
-                        <input type="number" name="hg22_total_cuartos" id="hg22_total_cuartos">
+                        <input type="number" name="hg22_total_cuartos" max="99" id="hg22_total_cuartos">
                     </div>                                        
                 </div>
             </div>
@@ -51,7 +51,7 @@
                         <label>Total de cuartos para dormir</label>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">                       
-                        <input type="number" name="hg23_total_cuartos_dormir" id="hg23_total_cuartos_dormir">
+                        <input type="number" name="hg23_total_cuartos_dormir" max="99" id="hg23_total_cuartos_dormir">
                     </div>                                        
                 </div>
             </div>
@@ -146,7 +146,7 @@
                         <label>Total</label>
                     </div>
                     <div class="col-xs-5 col-sm-5 col-md-5">                       
-                        <input type="number" name="hg26_total_fallecieron" id="hg26_total_fallecieron">
+                        <input type="number" name="hg26_total_fallecieron" max="99" id="hg26_total_fallecieron">
                     </div>   
                     <div class="col-xs-4 col-sm-4 col-md-4">                       
                         <h6>Si es 0, continúe con la pregunta 27)</h6>
@@ -182,7 +182,7 @@
                                     <input type="radio" name="hg26_sexo_<?php echo $i; ?>" value="2">
                                 </td>
                                 <td>
-                                    <input type="number" name="hg26_edad_<?php echo $i; ?>" id="hg26_edad">
+                                    <input type="number" name="hg26_edad_<?php echo $i; ?>" id="hg26_edad" max="999">
                                 </td> 
                                 <td>
                                     <input type="radio" name="hg26_certificado_defuncion_<?php echo $i; ?>" value="1">
@@ -206,9 +206,9 @@
                     <h6>(Comience por el[la] jefe[a] de hogar)</h6>                                       
                 </div>
                 <div class="form-group">
-                    <table border="2">
+                    <table border="2" WIDTH="50%">
                         <tr>
-                            <td rowspan="2">N&uacute;mero de orden de la persona</td>
+                            <td rowspan="2" width="10" height="10">N&uacute;mero de orden de la persona</td>
                             <td colspan="2">Nombres Completos</td>
                             <td colspan="2">Apellidos Completos</td>
                             <td rowspan="2">Edad</td>
@@ -226,22 +226,22 @@
                             ?>
                             <tr>
                                 <td>
-                                    <input type="number" name="hg27_numero_orden_<?php echo $i; ?>" id="hg27_numero_orden_<?php echo $i; ?>">
+                                    <input type="number" name="hg27_numero_orden_<?php echo $i; ?>" id="hg27_numero_orden_<?php echo $i; ?>" max="99" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td>
                                 <td>
-                                    <input type="text" name="hg27_primer_nombre_<?php echo $i; ?>" id="hg27_primer_nombre_<?php echo $i; ?>">
+                                    <input type="text" name="hg27_primer_nombre_<?php echo $i; ?>" id="hg27_primer_nombre_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td>
                                 <td>
                                     <input type="text" name="hg27_segundo_nombre_<?php echo $i; ?>" id="hg27_segundo_nombre_<?php echo $i; ?>">
                                 </td>
                                 <td>
-                                    <input type="text" name="hg27_primer_apellido_<?php echo $i; ?>" id="hg27_primer_apellido_<?php echo $i; ?>">
+                                    <input type="text" name="hg27_primer_apellido_<?php echo $i; ?>" id="hg27_primer_apellido_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td> 
                                 <td>
                                     <input type="text" name="hg27_segundo_apellido_<?php echo $i; ?>" id="hg27_segundo_apellido_<?php echo $i; ?>">
                                 </td>
                                 <td>
-                                    <input type="text" name="hg27_edad_<?php echo $i; ?>" id="hg27_edad_<?php echo $i; ?>">
+                                    <input type="number" name="hg27_edad_<?php echo $i; ?>" max="999" id="hg27_edad_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td>
                                 <td>
                                     <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="1">
@@ -254,7 +254,7 @@
                                     <label for="4">C&eacute;dula de extranjer&iacute;a</label>
                                 </td>
                                 <td>
-                                    <input type="number" name="hg27_documento_<?php echo $i; ?>" id="hg27_documento_<?php echo $i; ?>">
+                                    <input type="number" name="hg27_documento_<?php echo $i; ?>" id="hg27_documento_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td>
 
                             </tr>

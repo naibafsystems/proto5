@@ -984,7 +984,7 @@ class Hogar extends MX_Controller {
                 $persR["PA_TIPO_DOC"] = $_POST["hg27_tipoD_$k"];
                 $persR["PA1_NRO_DOC"] = $_POST["hg27_documento_$k"];
             //    var_dump($persR);
-                if( $persR["RA1_NRO_RESI"]!="" && $persR["RA2_1NOMBRE"]!="" && $persR["RA3_2NOMBRE"]!="" && $persR["RA4_1APELLIDO"]!="" && $persR["RA5_2APELLIDO"]!="")
+                if( $persR["RA1_NRO_RESI"]!="" && $persR["RA2_1NOMBRE"]!="" && $persR["RA4_1APELLIDO"]!="")
                 {
                     $insertResidentes = $this->mhogar->insertarPersonasResidentes($persR);  
                     if($insertResidentes){
