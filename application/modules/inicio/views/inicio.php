@@ -95,15 +95,33 @@ if(!empty($msgWelcomeFD)) {
             </div>
         </div>
     </div>
+    <div class="row estilosinicio">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+            <div id="panelUbicacion" class="panel panel-inicio-disabled">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center textobold">
+                            <div class="huge"><p>Editar Hogar</p></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <a href="<?php echo base_url('hogar/edit') ?>">Editar Hogar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php if($descargarCertificado == 'SI') { ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">&nbsp;</div>
 </div>
-<div class="row">
+<!--<div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="button" id="btnDescargar" name="btnDescargar" class="btn btn-dane-success">Ver constancia de diligenciamiento <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </button>
     </div>
-</div>
+</div>-->
 <?php } ?>

@@ -628,7 +628,7 @@ class Personas extends MX_Controller {
         */
         $this->data['id_persona'] = $id_persona;
         $this->data['respuestas'] = $this->mpers->respuestasPersonas($codiEncuesta, $id_vivienda, $id_hogar, $id_persona);
-        var_dump($this->data['respuestas']);
+        //var_dump($this->data['respuestas']);
         
         $this->data['view'] = 'newForm';
         $this->load->view('layout', $this->data);
@@ -740,7 +740,7 @@ class Personas extends MX_Controller {
         $resp4["PA1_MES_UHNV"] = $_POST["p57_mes"];
         $resp4["PA2_ANO_UHNV"] = $_POST["p57_anio"];
 
-        var_dump($resp);exit;
+        //var_dump($resp);exit;
         $resultadoPe = $this->mpers->actualizarDatosPe($resp);
         if($resultadoPe){
             $resultadoPe2 = $this->mpers->actualizarDatosPe2($resp2);

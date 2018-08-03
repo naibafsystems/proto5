@@ -1084,7 +1084,9 @@ class Modpersonas extends MY_model {
     }
 
     public function actualizarDatosPe($resp) {
+        //echo "INGRESO A LA FUNCION UPDATE<br>";
         ini_set('max_execution_time', 13600);
+        set_time_limit (13600);
         // PARTICIONAR LA PRIMERA
         $datosInsert['FECHA_MODIFICACION'] = "SYSDATE";
         $datosInsert['USUARIO_MODIFICACION'] = $this->session->userdata('id');
@@ -1106,19 +1108,21 @@ class Modpersonas extends MY_model {
         $datosInsert['PA_LUG_NAC'] =       $resp["PA_LUG_NAC"];      
         $datosInsert['PA1_DPTO_NAC'] =     $resp["PA1_DPTO_NAC"];    
         $datosInsert['PA2_MPIO_NAC'] =     $resp["PA2_MPIO_NAC"];    
-        var_dump($datosInsert);
+        
         $arrWhere['COD_ENCUESTAS'] = $resp["codi_encuesta"];
         $arrWhere['ID_VIVIENDA'] = $resp["id_vivienda"];
-        $arrWhere['ID_PERSONA_HOGAR'] = $resp["id_persona"];
-
+        $arrWhere['ID_PERSONA_HOGAR'] = $resp["id_persona"]; 
+        //var_dump($datosInsert);exit;
         if (!$this->ejecutar_update($this->sufijoTabla . '_PERSONAS_HOGAR', $datosInsert, $arrWhere)) {
-            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+            throw new Exception("No se pudo actualizar correctamente la información de la persona. SQL: " . $this->get_sql(), 1);
         }
+        //echo "TERMINO EL UPDATE<br>";exit;
         return true;
     }
 
     public function actualizarDatosPe2($resp) {
         ini_set('max_execution_time', 13600);
+        set_time_limit (13600);
         $datosInsert2['PA3_PAIS_NAC'] =     $resp["PA3_PAIS_NAC"];    
         $datosInsert2['PA31_ANO_LLEGO'] =   $resp["PA31_ANO_LLEGO"];  
         $datosInsert2['PA_VIVIA_5ANOS'] =   $resp["PA_VIVIA_5ANOS"];  
@@ -1152,6 +1156,7 @@ class Modpersonas extends MY_model {
 
     public function actualizarDatosPe3($resp) {
         ini_set('max_execution_time', 13600);
+        set_time_limit (13600);
         $datosInsert3['PC_VER'] =           $resp["PC_VER"];          
         $datosInsert3['PD_CAMINAR'] =       $resp["PD_CAMINAR"];      
         $datosInsert3['PE_COGER'] =         $resp["PE_COGER"];        
@@ -1185,6 +1190,7 @@ class Modpersonas extends MY_model {
 
     public function actualizarDatosPe4($resp) {
         ini_set('max_execution_time', 13600);
+        set_time_limit (13600);
         $datosInsert4['PA1_THNV'] =         $resp["PA1_THNV"];        
         $datosInsert4['PA2_HNVH'] =         $resp["PA2_HNVH"];        
         $datosInsert4['PA3_HNVM'] =         $resp["PA3_HNVM"];        
