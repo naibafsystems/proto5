@@ -1290,6 +1290,13 @@ class Ubicacion extends MX_Controller {
         $codiVivienda = $this->session->userdata('codiVivienda');
         $codiHogar = $this->session->userdata('codiHogar');
         $this->data['respuestas'] = $this->mvivi->respuestas($codiEncuesta);
+        $arrFechaInicio = $this->mvivi->consultaFechaInicio($codiEncuesta);
+        $fecha_inicio_vivienda = $arrFechaInicio[0]["FECHA_INI_VIVIENDA"];
+        $fecha_inicio_ubicacion = $arrFechaInicio[0]["FECHA_INI_UBICACION"];
+
+        if($fecha_inicio_vivienda=="" || $fecha_inicio_ubicacion==""){
+            $insertFechaInicioUbVv = $this->mvivi->actualizarFechaInicio($codiEncuesta);
+        }
         //var_dump($this->data['respuestas']);
 //        echo $codiEncuesta."---".$codiVivienda."++".$codiHogar;
 
@@ -1390,7 +1397,17 @@ class Ubicacion extends MX_Controller {
 
         $resultadoUbVv = $this->mvivi->actualizarDatosUbVv($resp);
         if($resultadoUbVv){
-            redirect(base_url('hogar/formNew'));            
+            $arrFechaFin = $this->mvivi->consultaFechaInicio($codiEncuesta);
+            $fecha_fin_vivienda = $arrFechaFin[0]["FECHA_FIN_VIVIENDA"];
+            $fecha_fin_ubicacion = $arrFechaFin[0]["FECHA_FIN_UBICACION"];
+
+            if($fecha_fin_vivienda=="" || $fecha_fin_ubicacion==""){
+                $insertFechaFinUbVv = $this->mvivi->actualizarFechaFin($codiEncuesta);
+                redirect(base_url('hogar/formNew'));
+            }else{
+                redirect(base_url('inicio'));
+            }
+                        
         }
     }
 }

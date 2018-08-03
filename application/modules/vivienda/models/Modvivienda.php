@@ -371,6 +371,9 @@ class Modvivienda extends My_model {
         $datosInsert['UA_CLASE'] = $resp["ub_clase"];
         $datosInsert['UA2_CPOB'] = $resp["ub2_codigo_clase_centro_poblado"];
         $datosInsert['UA1_LOCALIDAD'] = $resp["ub2_codigo_clase_localidad"];
+        $datosInsert['UVA1_TIPOTER'] = $resp["ub_territorio_etnico"];
+        //$datosInsert['UVA1_TIPOTER'] = $resp["ub_tipo_territorio_etnico"];
+        $datosInsert['UVA2_CODTER'] = $resp["ub_codigo_territorio_etnico"];
         $datosInsert['UVA_ESTA_AREAPROT'] = $resp["ub_area_protegida"];
         $datosInsert['UVA1_COD_AREAPROT'] = $resp["ub_codigo_area_protegida"];
         $datosInsert['U_CO'] = $resp["ub_area_coordinacion_operativa"];
@@ -487,6 +490,79 @@ class Modvivienda extends My_model {
         }
         $this->db->close();
         return $data;
+    }
+
+    public function consultaFechaInicio($codiEncuesta) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_ADMIN_CONTROL
+                WHERE COD_ENCUESTAS =  " . $codiEncuesta;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+
+    public function actualizarFechaInicio($codiEncuesta) {
+        
+        // PARTICIONAR LA PRIMERA
+        $datosInsert['FECHA_INI_UBICACION'] = "SYSDATE";
+        $datosInsert['FECHA_INI_VIVIENDA'] = "SYSDATE";
+        $arrWhere['COD_ENCUESTAS'] = $codiEncuesta;        
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_ADMIN_CONTROL', $datosInsert, $arrWhere)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+
+        return true;
+    }
+
+    public function actualizarFechaInicioHogar($codiEncuesta) {
+        
+        // PARTICIONAR LA PRIMERA
+        $datosInsert['FECHA_INI_HOGAR'] = "SYSDATE";
+        $arrWhere['COD_ENCUESTAS'] = $codiEncuesta;        
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_ADMIN_CONTROL', $datosInsert, $arrWhere)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+
+        return true;
+    }
+
+     public function actualizarFechaFin($codiEncuesta) {
+        
+        // PARTICIONAR LA PRIMERA
+        $datosInsert['FECHA_FIN_UBICACION'] = "SYSDATE";
+        $datosInsert['FECHA_FIN_VIVIENDA'] = "SYSDATE";
+        $arrWhere['COD_ENCUESTAS'] = $codiEncuesta;        
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_ADMIN_CONTROL', $datosInsert, $arrWhere)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+
+        return true;
+    }
+
+    public function actualizarFechaFinHogar($codiEncuesta) {
+        
+        // PARTICIONAR LA PRIMERA
+        $datosInsert['FECHA_FIN_HOGAR'] = "SYSDATE";
+        $arrWhere['COD_ENCUESTAS'] = $codiEncuesta;        
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_ADMIN_CONTROL', $datosInsert, $arrWhere)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+
+        return true;
     }
 
 }

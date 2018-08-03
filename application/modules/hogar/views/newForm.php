@@ -24,7 +24,7 @@
                         <label>Total de hogares</label>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">                       
-                        <input type="number" name="hg21_numero_orden" id="hg21_numero_orden" value="<?php echo $total_hogares ?>" readonly>
+                        <input type="number" name="hg21_numero_ordenT" id="hg21_numero_ordenT" value="<?php echo $total_hogares ?>" readonly>
                     </div> 
                     <div class="col-xs-3 col-sm-3 col-md-3">
                         <h6>(Corresponde a la respuesta de la pregunta 16)</h6>                      
@@ -173,7 +173,7 @@
                             ?>
                             <tr>
                                 <td>
-                                    <input type="number" name="hg26_numero_orden_<?php echo $i; ?>" id="hg26_numero_orden" value="1" readonly>
+                                    <input type="number" name="hg26_numero_orden_<?php echo $i; ?>" id="hg26_numero_orden">
                                 </td>
                                 <td>
                                     <input type="radio" name="hg26_sexo_<?php echo $i; ?>" value="1">
@@ -206,14 +206,14 @@
                     <h6>(Comience por el[la] jefe[a] de hogar)</h6>                                       
                 </div>
                 <div class="form-group">
-                    <table border="2" WIDTH="50%">
+                    <table border="2" WIDTH="100%">
                         <tr>
-                            <td rowspan="2" width="10" height="10">N&uacute;mero de orden de la persona</td>
-                            <td colspan="2">Nombres Completos</td>
-                            <td colspan="2">Apellidos Completos</td>
-                            <td rowspan="2">Edad</td>
-                            <td rowspan="2">Tipo Documento Identidad</td>
-                            <td rowspan="2">N&uacute;mero Del Documento</td>
+                            <th rowspan="2">N&uacute;mero de orden de la persona</th>
+                            <th colspan="2">Nombres Completos</th>
+                            <th colspan="2">Apellidos Completos</th>
+                            <th rowspan="2">Edad</th>
+                            <th rowspan="2">Tipo Documento Identidad</th>
+                            <th rowspan="2">N&uacute;mero Del Documento</th>
                         </tr>
                         <tr colspan="2">
                             <td>Primer Nombre</td>
@@ -226,32 +226,40 @@
                             ?>
                             <tr>
                                 <td>
-                                    <input type="number" name="hg27_numero_orden_<?php echo $i; ?>" id="hg27_numero_orden_<?php echo $i; ?>" max="99" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
+                                    <input style="width: 100px;" type="number" name="hg27_numero_orden_<?php echo $i; ?>" id="hg27_numero_orden_<?php echo $i; ?>" max="99" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td>
                                 <td>
-                                    <input type="text" name="hg27_primer_nombre_<?php echo $i; ?>" id="hg27_primer_nombre_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
+                                   <input style="width: 120px;" type="text" name="hg27_primer_nombre_<?php echo $i; ?>" id="hg27_primer_nombre_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td>
                                 <td>
-                                    <input type="text" name="hg27_segundo_nombre_<?php echo $i; ?>" id="hg27_segundo_nombre_<?php echo $i; ?>">
+                                    <input style="width: 120px;" type="text" name="hg27_segundo_nombre_<?php echo $i; ?>" id="hg27_segundo_nombre_<?php echo $i; ?>">
                                 </td>
                                 <td>
-                                    <input type="text" name="hg27_primer_apellido_<?php echo $i; ?>" id="hg27_primer_apellido_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
+                                    <input style="width: 120px;" type="text" name="hg27_primer_apellido_<?php echo $i; ?>" id="hg27_primer_apellido_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td> 
                                 <td>
-                                    <input type="text" name="hg27_segundo_apellido_<?php echo $i; ?>" id="hg27_segundo_apellido_<?php echo $i; ?>">
+                                    <input style="width: 120px;" type="text" name="hg27_segundo_apellido_<?php echo $i; ?>" id="hg27_segundo_apellido_<?php echo $i; ?>">
                                 </td>
                                 <td>
-                                    <input type="number" name="hg27_edad_<?php echo $i; ?>" max="999" id="hg27_edad_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
+                                    <input style="width: 50px;" type="number" name="hg27_edad_<?php echo $i; ?>" max="999" id="hg27_edad_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
                                 </td>
                                 <td>
-                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="1">
-                                    <label for="1">Registro civil de nacimiento</label>
-                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="2">
-                                    <label for="2">Tarjeta de identidad</label>
-                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="3">
-                                    <label for="3">C&eacute;dula de ciudadan&iacute;a</label>
-                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="4">
-                                    <label for="4">C&eacute;dula de extranjer&iacute;a</label>
+                                	<div class="doc-group">
+	                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="1">
+	                                    <label for="1">Registro civil de nacimiento</label>
+	                                </div>
+	                                <div class="doc-group">
+	                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="2">
+	                                    <label for="2">Tarjeta de identidad</label>
+	                                </div>
+	                                <div class="doc-group">
+	                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="3">
+	                                    <label for="3">C&eacute;dula de ciudadan&iacute;a</label>
+	                                </div>
+	                                <div class="doc-group">
+	                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="4">
+	                                    <label for="4">C&eacute;dula de extranjer&iacute;a</label>
+	                                </div>
                                 </td>
                                 <td>
                                     <input type="number" name="hg27_documento_<?php echo $i; ?>" id="hg27_documento_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>

@@ -322,6 +322,7 @@ class Modhogar extends My_model {
         $persF['ID_HOGAR'] = $param["id_hogar"];
         $persF['ID_PERSONA_FALLECIDA'] = $id_persona_fallecida;
         $persF["F_NROHOG"] = $param["F_NROHOG"];
+        $persF["FA1_NRO_FALL"] = $param["FA1_NRO_FALL"];
         $persF["FA2_SEXO_FALL"] = $param["FA2_SEXO_FALL"];
         $persF["FA3_EDAD_FALL"] = $param["FA3_EDAD_FALL"];
         $persF["FA4_CERT_DEFUN"] = $param["FA4_CERT_DEFUN"];
@@ -330,6 +331,27 @@ class Modhogar extends My_model {
         if (!$this->ejecutar_insert($this->sufijoTabla . '_PERSONAS_FALLECIDAS', $persF)) {
             throw new Exception("No se pudo guardar correctamente la información del resultado de la entrevista. SQL: " . $this->get_sql(), 2);
         }
+        return $id_persona_fallecida;
+    }
+
+    public function actualizarPersonasFallecidas($param) {
+        //var_dump($param);exit;
+
+        $persF['FECHA_MODIFICACION'] = "SYSDATE";
+        $persF['USUARIO_MODIFICACION'] = $this->session->userdata('id');
+        $whereF['COD_ENCUESTAS'] = $param["codi_encuesta"];
+        $whereF['ID_VIVIENDA'] = $param["id_vivienda"];
+        $whereF['ID_HOGAR'] = $param["id_hogar"];
+        $whereF["FA1_NRO_FALL"] = $param["FA1_NRO_FALL"];
+        $persF["FA2_SEXO_FALL"] = $param["FA2_SEXO_FALL"];
+        $persF["FA3_EDAD_FALL"] = $param["FA3_EDAD_FALL"];
+        $persF["FA4_CERT_DEFUN"] = $param["FA4_CERT_DEFUN"];
+
+        
+        if (!$this->ejecutar_update($this->sufijoTabla . '_PERSONAS_FALLECIDAS', $persF, $whereF)) {
+                throw new Exception("No se pudo actualizar correctamente la información del hogar. SQL: " . $this->get_sql(), 1);
+            }
+
         return $id_persona_fallecida;
     }
 
@@ -374,6 +396,68 @@ class Modhogar extends My_model {
             throw new Exception("No se pudo guardar correctamente la información del resultado de la entrevista. SQL: " . $this->get_sql(), 2);
         }
 
+        if($persR["RA1_NRO_RESI"]=="1"){
+            $arrDatosJefeHogar['H_ID_JEFE'] = $persH["PA1_NRO_DOC"];
+            $arrWhereHogar['COD_ENCUESTAS'] = $param["codi_encuesta"];
+            $arrWhereHogar['ID_VIVIENDA'] = $param["id_vivienda"];
+            $arrWhereHogar['ID_HOGAR'] = $param["id_hogar"];
+
+            if (!$this->ejecutar_update($this->sufijoTabla . '_HOGAR', $arrDatosJefeHogar, $arrWhereHogar)) {
+                throw new Exception("No se pudo actualizar correctamente la información del hogar. SQL: " . $this->get_sql(), 1);
+            }
+            //$jefeHogar['H_ID_JEFE'] = "SYSDATE";
+        }
+
+        return $id_persona_residente;
+    }
+
+    public function actualizarPersonasResidentes($param) {
+        //var_dump($param);exit;
+
+        $persR['FECHA_MODIFICACION'] = "SYSDATE";
+        $persR['USUARIO_MODIFICACION'] = $this->session->userdata('id');
+        $whereR['COD_ENCUESTAS'] = $param["codi_encuesta"];
+        $whereR['ID_VIVIENDA'] = $param["id_vivienda"];
+        $whereR['ID_HOGAR'] = $param["id_hogar"];
+        $whereR["RA1_NRO_RESI"] = $param["RA1_NRO_RESI"];
+        $persR["RA2_1NOMBRE"] = $param["RA2_1NOMBRE"];
+        $persR["RA3_2NOMBRE"] = $param["RA3_2NOMBRE"];
+        $persR["RA4_1APELLIDO"] = $param["RA4_1APELLIDO"];
+        $persR["RA5_2APELLIDO"] = $param["RA5_2APELLIDO"];
+
+        
+        if (!$this->ejecutar_update($this->sufijoTabla . '_PERSONAS_RESIDENTES', $persR, $whereR)) {
+                throw new Exception("No se pudo actualizar correctamente la información del hogar. SQL: " . $this->get_sql(), 1);
+            }
+
+        $persH['FECHA_MODIFICACION'] = "SYSDATE";
+        $persH['USUARIO_MODIFICACION'] = $this->session->userdata('id');
+        $whereH['COD_ENCUESTAS'] = $param["codi_encuesta"];
+        $whereH['ID_VIVIENDA'] = $param["id_vivienda"];
+        $whereH['ID_HOGAR'] = $param["id_hogar"];
+        $whereH["P_NRO_PER"] = $param["RA1_NRO_RESI"];
+        $persH["PA_1ER_NOMBRE"] = $param["RA2_1NOMBRE"];
+        $persH["PB_1ER_APELLIDO"] = $param["RA4_1APELLIDO"];
+        $persH["P_EDAD"] = $param["P_EDAD"];
+        $persH["PA_TIPO_DOC"] = $param["PA_TIPO_DOC"];
+        $persH["PA1_NRO_DOC"] = $param["PA1_NRO_DOC"];
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_PERSONAS_HOGAR', $persH, $whereH)) {
+                throw new Exception("No se pudo actualizar correctamente la información del hogar. SQL: " . $this->get_sql(), 1);
+            }
+
+        if($persR["RA1_NRO_RESI"]=="1"){
+            $arrDatosJefeHogar['H_ID_JEFE'] = $persH["PA1_NRO_DOC"];
+            $arrWhereHogar['COD_ENCUESTAS'] = $param["codi_encuesta"];
+            $arrWhereHogar['ID_VIVIENDA'] = $param["id_vivienda"];
+            $arrWhereHogar['ID_HOGAR'] = $param["id_hogar"];
+
+            if (!$this->ejecutar_update($this->sufijoTabla . '_HOGAR', $arrDatosJefeHogar, $arrWhereHogar)) {
+                throw new Exception("No se pudo actualizar correctamente la información del hogar. SQL: " . $this->get_sql(), 1);
+            }
+            //$jefeHogar['H_ID_JEFE'] = "SYSDATE";
+        }
+
         return $id_persona_residente;
     }
 
@@ -390,6 +474,97 @@ class Modhogar extends My_model {
         }
 
         return true;
+    }
+
+    public function respuestas($codiEncuesta, $id_vivienda, $id_hogar) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_HOGAR
+                WHERE COD_ENCUESTAS =  " . $codiEncuesta. "AND ID_VIVIENDA = " . $id_vivienda. "AND ID_HOGAR = " . $id_hogar;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+    public function respuestasPersonas($codiEncuesta, $id_vivienda, $id_hogar) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_PERSONAS_HOGAR PH
+                INNER JOIN  " . $this->sufijoTabla . "_PERSONAS_RESIDENTES PR ON PR.ID_PERSONA_RESIDENTE=PH.ID_PERSONA_HOGAR 
+                WHERE PH.COD_ENCUESTAS =  " . $codiEncuesta. " AND PH.ID_VIVIENDA = " . $id_vivienda. " AND PH.ID_HOGAR = " . $id_hogar;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+    public function respuestasPersonasFallecidas($codiEncuesta, $id_vivienda, $id_hogar) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_PERSONAS_FALLECIDAS 
+                WHERE COD_ENCUESTAS =  " . $codiEncuesta. " AND ID_VIVIENDA = " . $id_vivienda. " AND ID_HOGAR = " . $id_hogar;
+        
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+    public function consultarPersonaFallecida($codiEncuesta,$id_vivienda,$id_hogar,$numero_persona_fallecida) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_PERSONAS_FALLECIDAS 
+                WHERE COD_ENCUESTAS =  " . $codiEncuesta. " AND ID_VIVIENDA = " . $id_vivienda. " AND ID_HOGAR = " . $id_hogar. " AND FA1_NRO_FALL = " . $numero_persona_fallecida;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+    public function consultarPersonaResidente($codiEncuesta,$id_vivienda,$id_hogar,$numero_persona_residente) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_PERSONAS_RESIDENTES  
+                WHERE COD_ENCUESTAS =  " . $codiEncuesta. " AND ID_VIVIENDA = " . $id_vivienda. " AND ID_HOGAR = " . $id_hogar. " AND RA1_NRO_RESI = " . $numero_persona_residente;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
     }
 }
 //EOC

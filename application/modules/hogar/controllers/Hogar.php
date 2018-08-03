@@ -912,12 +912,18 @@ class Hogar extends MX_Controller {
 
     public function formNew() {
         $this->load->model('vivienda/modvivienda', 'mvivi');
+        $this->load->model('modhogar', 'mhogar');
 
         $codiEncuesta = $this->session->userdata('codiEncuesta');
         $id_vivienda = $this->session->userdata('codiVivienda');
         $id_hogar = $this->session->userdata('codiHogar');
-        echo $id_hogar;
+        
+        $arrFechaInicio = $this->mvivi->consultaFechaInicio($codiEncuesta);
+        $fecha_inicio_hogar = $arrFechaInicio[0]["FECHA_INI_HOGAR"];
 
+        if($fecha_inicio_hogar==""){
+            $insertFechaInicioH = $this->mvivi->actualizarFechaInicioHogar($codiEncuesta);
+        }
 
         $this->data['id_vivienda'] = $id_vivienda;
         $consultaHogares = $this->mvivi->consultarTotalHogares($id_vivienda);
@@ -928,6 +934,40 @@ class Hogar extends MX_Controller {
 
         
         $this->data['view'] = 'newForm';
+        $this->load->view('layout', $this->data);
+        
+    }
+
+    public function edit() {
+        error_reporting(E_ALL & ~E_NOTICE);
+        $this->load->model('vivienda/modvivienda', 'mvivi');
+        $this->load->model('modhogar', 'mhogar');
+
+        $codiEncuesta = $this->session->userdata('codiEncuesta');
+        $id_vivienda = $this->session->userdata('codiVivienda');
+        $id_hogar = $this->session->userdata('codiHogar');
+        
+        $arrFechaInicio = $this->mvivi->consultaFechaInicio($codiEncuesta);
+        $fecha_inicio_hogar = $arrFechaInicio[0]["FECHA_INI_HOGAR"];
+
+        if($fecha_inicio_hogar==""){
+            $insertFechaInicioH = $this->mvivi->actualizarFechaInicioHogar($codiEncuesta);
+        }
+
+        $this->data['respuestas'] = $this->mhogar->respuestas($codiEncuesta, $id_vivienda, $id_hogar);
+        $this->data['respuestasPersonas'] = $this->mhogar->respuestasPersonas($codiEncuesta, $id_vivienda, $id_hogar);
+        
+        $this->data['respuestasPersonasFallecidas'] = $this->mhogar->respuestasPersonasFallecidas($codiEncuesta, $id_vivienda, $id_hogar);
+
+        $this->data['id_vivienda'] = $id_vivienda;
+        $consultaHogares = $this->mvivi->consultarTotalHogares($id_vivienda);
+        $consultaHogaresInsertados = $this->mvivi->consultarHogaresInsertados($id_vivienda);
+        
+        $this->data['total_hogares'] = $consultaHogares[0]["V_TOT_HOG"];
+        $this->data['total_hogares_insertados'] = $consultaHogaresInsertados[0]["TOTAL"];
+
+        
+        $this->data['view'] = 'editH';
         $this->load->view('layout', $this->data);
         
     }
@@ -960,13 +1000,19 @@ class Hogar extends MX_Controller {
                 $persF["codi_encuesta"] = $codiEncuesta;
                 $persF["id_vivienda"] = $id_vivienda;
                 $persF["id_hogar"] = $id_hogar;
-                $persF["F_NROHOG"] = $_POST["hg21_numero_orden"];
+                $persF["F_NROHOG"] = $resp["hg_numero_hogar"];
+                $persF["FA1_NRO_FALL"] = $_POST["hg26_numero_orden_$k"];
                 $persF["FA2_SEXO_FALL"] = $_POST["hg26_sexo_$k"];
                 $persF["FA3_EDAD_FALL"] = $_POST["hg26_edad_$k"];
                 $persF["FA4_CERT_DEFUN"] = $_POST["hg26_certificado_defuncion_$k"];
                 
                 if( $persF["FA2_SEXO_FALL"]!="" && $persF["FA3_EDAD_FALL"]!="" && $persF["FA4_CERT_DEFUN"]!=""){
-                  $insertFallecidas = $this->mhogar->insertarPersonasFallecidas($persF);  
+                    $arrPersonasFallecidas = $this->mhogar->consultarPersonaFallecida($codiEncuesta,$id_vivienda,$id_hogar,$persF["FA1_NRO_FALL"]);
+                    if(count($arrPersonasFallecidas)>0){
+                        $updateFallecidas = $this->mhogar->actualizarPersonasFallecidas($persF);  
+                    }else{
+                        $insertFallecidas = $this->mhogar->insertarPersonasFallecidas($persF);  
+                    }
                 }
             }
             
@@ -986,14 +1032,20 @@ class Hogar extends MX_Controller {
             //    var_dump($persR);
                 if( $persR["RA1_NRO_RESI"]!="" && $persR["RA2_1NOMBRE"]!="" && $persR["RA4_1APELLIDO"]!="")
                 {
-                    $insertResidentes = $this->mhogar->insertarPersonasResidentes($persR);  
-                    if($insertResidentes){
-                        $persC["codi_encuesta"] = $codiEncuesta;
-                        $persC["id_vivienda"] = $id_vivienda;
-                        $persC["id_hogar"] = $id_hogar;
-                        $persC["id_persona"] = $insertResidentes;
+                    $arrPersonasResidentes = $this->mhogar->consultarPersonaResidente($codiEncuesta,$id_vivienda,$id_hogar,$persR["RA1_NRO_RESI"]);
 
-                        $insertPersonasC = $this->mhogar->insertarPersonasC($persC);  
+                    if(count($arrPersonasResidentes)>0){
+                        $insertResidentes = $this->mhogar->actualizarPersonasResidentes($persR);  
+                    }else{
+                        $insertResidentes = $this->mhogar->insertarPersonasResidentes($persR);  
+                        if($insertResidentes){
+                            $persC["codi_encuesta"] = $codiEncuesta;
+                            $persC["id_vivienda"] = $id_vivienda;
+                            $persC["id_hogar"] = $id_hogar;
+                            $persC["id_persona"] = $insertResidentes;
+
+                            $insertPersonasC = $this->mhogar->insertarPersonasC($persC);  
+                        }
                     }
                 }
             }
@@ -1020,6 +1072,12 @@ class Hogar extends MX_Controller {
                     $this->session->set_userdata($usuario_data);
                 }
             }else{
+                $arrFechaFin = $this->mvivi->consultaFechaInicio($codiEncuesta);
+                $fecha_fin_hogar = $arrFechaFin[0]["FECHA_FIN_HOGAR"];
+
+                if($fecha_fin_hogar==""){
+                    $insertFechaFinH = $this->mvivi->actualizarFechaFinHogar($codiEncuesta);
+                }
                 redirect(base_url('inicio'));    
             }
             redirect(base_url('hogar/formNew'));

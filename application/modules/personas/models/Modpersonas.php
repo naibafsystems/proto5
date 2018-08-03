@@ -1062,5 +1062,156 @@ class Modpersonas extends MY_model {
             return false;
         }
     }
+
+
+    public function respuestasPersonas($codiEncuesta, $id_vivienda, $id_hogar, $id_persona) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_PERSONAS_HOGAR PH
+                INNER JOIN  " . $this->sufijoTabla . "_PERSONAS_RESIDENTES PR ON PR.ID_PERSONA_RESIDENTE=PH.ID_PERSONA_HOGAR 
+                WHERE PH.COD_ENCUESTAS =  " . $codiEncuesta. " AND PH.ID_VIVIENDA = " . $id_vivienda. " AND PH.ID_HOGAR = " . $id_hogar. " AND PH.ID_PERSONA_HOGAR = " . $id_persona;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+    public function actualizarDatosPe($resp) {
+        ini_set('max_execution_time', 13600);
+        // PARTICIONAR LA PRIMERA
+        $datosInsert['FECHA_MODIFICACION'] = "SYSDATE";
+        $datosInsert['USUARIO_MODIFICACION'] = $this->session->userdata('id');
+        $datosInsert['P_SEXO'] =           $resp["P_SEXO"];            
+        $datosInsert['PA_SABE_FECHA'] =    $resp["PA_SABE_FECHA"];   
+        $datosInsert['PA1_FECHA_NAC'] =    $resp["PA1_FECHA_NAC"];   
+        $datosInsert['P_EDAD'] =           $resp["P_EDAD"];          
+        $datosInsert['PA_TIPO_DOC'] =      $resp["PA_TIPO_DOC"];     
+        $datosInsert['PA1_NRO_DOC'] =      $resp["PA1_NRO_DOC"];     
+        $datosInsert['P_PARENTESCO'] =     $resp["P_PARENTESCO"];    
+        $datosInsert['PA1_GRP_ETNIC'] =    $resp["PA1_GRP_ETNIC"];   
+        $datosInsert['PA11_COD_ETNIA'] =   $resp["PA11_COD_ETNIA"];  
+        $datosInsert['PA12_CLAN'] =        $resp["PA12_CLAN"];       
+        $datosInsert['PA21_COD_VITSA'] =   $resp["PA21_COD_VITSA"];  
+        $datosInsert['PA22_COD_KUMPA'] =   $resp["PA22_COD_KUMPA"];  
+        $datosInsert['PA_HABLA_LENG'] =    $resp["PA_HABLA_LENG"];   
+        $datosInsert['PA1_ENTIENDE'] =     $resp["PA1_ENTIENDE"];    
+        $datosInsert['PB_OTRAS_LENG'] =    $resp["PB_OTRAS_LENG"];   
+        $datosInsert['PA_LUG_NAC'] =       $resp["PA_LUG_NAC"];      
+        $datosInsert['PA1_DPTO_NAC'] =     $resp["PA1_DPTO_NAC"];    
+        $datosInsert['PA2_MPIO_NAC'] =     $resp["PA2_MPIO_NAC"];    
+        var_dump($datosInsert);
+        $arrWhere['COD_ENCUESTAS'] = $resp["codi_encuesta"];
+        $arrWhere['ID_VIVIENDA'] = $resp["id_vivienda"];
+        $arrWhere['ID_PERSONA_HOGAR'] = $resp["id_persona"];
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_PERSONAS_HOGAR', $datosInsert, $arrWhere)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+        return true;
+    }
+
+    public function actualizarDatosPe2($resp) {
+        ini_set('max_execution_time', 13600);
+        $datosInsert2['PA3_PAIS_NAC'] =     $resp["PA3_PAIS_NAC"];    
+        $datosInsert2['PA31_ANO_LLEGO'] =   $resp["PA31_ANO_LLEGO"];  
+        $datosInsert2['PA_VIVIA_5ANOS'] =   $resp["PA_VIVIA_5ANOS"];  
+        $datosInsert2['PA1_DPTO_5ANOS'] =   $resp["PA1_DPTO_5ANOS"];  
+        $datosInsert2['PA2_MPIO_5ANOS'] =   $resp["PA2_MPIO_5ANOS"];  
+        $datosInsert2['PA21_CLASE_5ANOS'] = $resp["PA21_CLASE_5ANOS"];
+        $datosInsert2['PA3_PAIS_5ANO'] =    $resp["PA3_PAIS_5ANO"];   
+        $datosInsert2['PA31_ANO_LLEGA5'] =  $resp["PA31_ANO_LLEGA5"]; 
+        $datosInsert2['PA_VIVIA_1ANO'] =    $resp["PA_VIVIA_1ANO"];   
+        $datosInsert2['PA1_DPTO_1ANO'] =    $resp["PA1_DPTO_1ANO"];   
+        $datosInsert2['PA2_MPIO_1ANO'] =    $resp["PA2_MPIO_1ANO"];   
+        $datosInsert2['PA21_CLASE_1ANO'] =  $resp["PA21_CLASE_1ANO"]; 
+        $datosInsert2['PA3_PAIS_1ANO'] =    $resp["PA3_PAIS_1ANO"];   
+        $datosInsert2['P_ENFERMO'] =        $resp["P_ENFERMO"];       
+        $datosInsert2['P_QUEHIZO_PPAL'] =   $resp["P_QUEHIZO_PPAL"];  
+        $datosInsert2['PA_LO_ATENDIERON'] = $resp["PA_LO_ATENDIERON"];
+        $datosInsert2['PA1_CALIDAD_SERV'] = $resp["PA1_CALIDAD_SERV"];
+        $datosInsert2['CONDICION_FISICA'] = $resp["CONDICION_FISICA"];
+        $datosInsert2['PA_OIR'] =           $resp["PA_OIR"];          
+        $datosInsert2['PB_HABLAR'] =        $resp["PB_HABLAR"];       
+
+        $arrWhere2['COD_ENCUESTAS'] = $resp["codi_encuesta"];
+        $arrWhere2['ID_VIVIENDA'] = $resp["id_vivienda"];
+        $arrWhere2['ID_PERSONA_HOGAR'] = $resp["id_persona"];
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_PERSONAS_HOGAR', $datosInsert2, $arrWhere2)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+        return true;
+    }
+
+    public function actualizarDatosPe3($resp) {
+        ini_set('max_execution_time', 13600);
+        $datosInsert3['PC_VER'] =           $resp["PC_VER"];          
+        $datosInsert3['PD_CAMINAR'] =       $resp["PD_CAMINAR"];      
+        $datosInsert3['PE_COGER'] =         $resp["PE_COGER"];        
+        $datosInsert3['PF_DECIDIR'] =       $resp["PF_DECIDIR"];      
+        $datosInsert3['PG_COMER'] =         $resp["PG_COMER"];        
+        $datosInsert3['PH_RELACION'] =      $resp["PH_RELACION"];     
+        $datosInsert3['PI_TAREAS'] =        $resp["PI_TAREAS"];       
+        $datosInsert3['P_LIM_PPAL'] =       $resp["P_LIM_PPAL"];      
+        $datosInsert3['P_CAUSA_LIM'] =      $resp["P_CAUSA_LIM"];     
+        $datosInsert3['PA_AYUDA_TEC'] =     $resp["PA_AYUDA_TEC"];    
+        $datosInsert3['PB_AYUDA_PERS'] =    $resp["PB_AYUDA_PERS"];   
+        $datosInsert3['PC_AYUDA_MED'] =     $resp["PC_AYUDA_MED"];    
+        $datosInsert3['PD_AYUDA_ANCES'] =   $resp["PD_AYUDA_ANCES"];  
+        $datosInsert3['P_CUIDA'] =          $resp["P_CUIDA"];         
+        $datosInsert3['P_ALFABETA'] =       $resp["P_ALFABETA"];      
+        $datosInsert3['PA_ASISTENCIA'] =    $resp["PA_ASISTENCIA"];   
+        $datosInsert3['P_NIVEL_ANOS'] =     $resp["P_NIVEL_ANOS"];    
+        $datosInsert3['P_TRABAJO'] =        $resp["P_TRABAJO"];       
+        $datosInsert3['P_EST_CIVIL'] =      $resp["P_EST_CIVIL"];     
+        $datosInsert3['PA_HNV'] =           $resp["PA_HNV"];          
+
+        $arrWhere3['COD_ENCUESTAS'] = $resp["codi_encuesta"];
+        $arrWhere3['ID_VIVIENDA'] = $resp["id_vivienda"];
+        $arrWhere3['ID_PERSONA_HOGAR'] = $resp["id_persona"];
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_PERSONAS_HOGAR', $datosInsert3, $arrWhere3)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+        return true;
+    }
+
+    public function actualizarDatosPe4($resp) {
+        ini_set('max_execution_time', 13600);
+        $datosInsert4['PA1_THNV'] =         $resp["PA1_THNV"];        
+        $datosInsert4['PA2_HNVH'] =         $resp["PA2_HNVH"];        
+        $datosInsert4['PA3_HNVM'] =         $resp["PA3_HNVM"];        
+        $datosInsert4['PA_HNVS'] =          $resp["PA_HNVS"];         
+        $datosInsert4['PA1_THSV'] =         $resp["PA1_THSV"];        
+        $datosInsert4['PA2_HSVH'] =         $resp["PA2_HSVH"];        
+        $datosInsert4['PA3_HSVM'] =         $resp["PA3_HSVM"];        
+        $datosInsert4['PA_HFC'] =           $resp["PA_HFC"];          
+        $datosInsert4['PA1_THFC'] =         $resp["PA1_THFC"];        
+        $datosInsert4['PA2_HFCH'] =         $resp["PA2_HFCH"];        
+        $datosInsert4['PA3_HFCM'] =         $resp["PA3_HFCM"];        
+        $datosInsert4['PA_UHNV'] =          $resp["PA_UHNV"];         
+        $datosInsert4['PA1_MES_UHNV'] =     $resp["PA1_MES_UHNV"];    
+        $datosInsert4['PA2_ANO_UHNV'] =     $resp["PA2_ANO_UHNV"];    
+
+        
+        $arrWhere4['COD_ENCUESTAS'] = $resp["codi_encuesta"];
+        $arrWhere4['ID_VIVIENDA'] = $resp["id_vivienda"];
+        $arrWhere4['ID_PERSONA_HOGAR'] = $resp["id_persona"];
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_PERSONAS_HOGAR', $datosInsert4, $arrWhere4)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+
+        return true;
+    }
+
+
 }
 //EOC

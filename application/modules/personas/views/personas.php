@@ -24,8 +24,8 @@ if(!empty($msgErrorFD)) {
 <div class="row">
     <div class="col-md-12">&nbsp;</div>
 </div>
-<form id="frmPersona" name="frmPersona" role="form" method="post">
-    <?php foreach ($personas as $kp => $vp) { ?>
+<!--<form id="frmPersona" name="frmPersona" role="form" method="post">
+    <?php /*var_dump($personas);*/ foreach ($personas as $kp => $vp) { ?>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
@@ -38,7 +38,25 @@ if(!empty($msgErrorFD)) {
             </div>
         </div>
     <?php } ?>
-</form>
+</form> -->
+
+
+<!--<form id="frmSPersona" name="frmSPersona" role="form" method="post" action="<?php echo base_url('personas/formNew') ?>"> -->
+    <?php /*var_dump($personas);*/ foreach ($personas as $kp => $vp) { ?>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <?php if($vp['completo'] == 'SI') {?>
+                        <!--<button type="button" name="completar-<?=$kp?>" data-numepers="<?=$kp?>" class="btn btn-completed completar-pers"><?=$vp['nombre']?> <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span> </button>-->
+                        <button type="button" class="btn btn-completed"><a href="<?php echo base_url('personas/formNew/'.$vp['id_persona']) ?>"><?php echo $vp['nombre']; ?></a></button>
+                    <?php } else if($vp['completo'] == 'NO') { ?>
+                        <button type="button" class="btn btn-completed"><a href="<?php echo base_url('personas/formNew/'.$vp['id_persona']) ?>"><?php echo $vp['nombre']; ?></a></button>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+<!--</form>-->
 
 
 

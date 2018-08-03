@@ -98,8 +98,10 @@ class Personas extends MX_Controller {
         }
 
         if(count($arrACP) > 0) {
+            //var_dump($arrACP);
             foreach ($arrACP as $kACP => $vACP) {
                 $this->data['personas'][$vACP['RA1_NRO_RESI']]['nombre'] = mayuscula_inicial($vACP['nombre']);
+                $this->data['personas'][$vACP['RA1_NRO_RESI']]['id_persona'] = $vACP['ID_PERSONA_RESIDENTE'];
                 $this->data['personas'][$vACP['RA1_NRO_RESI']]['completo'] = 'NO';
                 if(!empty($vACP['FECHA_INI_PERS']) && !empty($vACP['FECHA_FIN_PERS'])) {
                     $this->data['personas'][$vACP['RA1_NRO_RESI']]['completo'] = 'SI';
@@ -598,5 +600,161 @@ class Personas extends MX_Controller {
 		
 		$this->output->set_content_type('application/json', 'utf-8')->set_output(json_encode($response));
 	}
+
+    public function formNew($id_persona) {
+        error_reporting(E_ALL & ~E_NOTICE);
+        $this->load->model('vivienda/modvivienda', 'mvivi');
+        $this->load->model('hogar/modhogar', 'mhogar');
+        $this->load->model("modpersonas", "mpers");
+
+        $codiEncuesta = $this->session->userdata('codiEncuesta');
+        $id_vivienda = $this->session->userdata('codiVivienda');
+        $id_hogar = $this->session->userdata('codiHogar');
+        $id_persona = $id_persona;
+        
+        /*$arrFechaInicio = $this->mvivi->consultaFechaInicio($codiEncuesta);
+        $fecha_inicio_hogar = $arrFechaInicio[0]["FECHA_INI_HOGAR"];
+
+        if($fecha_inicio_hogar==""){
+            $insertFechaInicioH = $this->mvivi->actualizarFechaInicioHogar($codiEncuesta);
+        }
+
+        $this->data['id_vivienda'] = $id_vivienda;
+        $consultaHogares = $this->mvivi->consultarTotalHogares($id_vivienda);
+        $consultaHogaresInsertados = $this->mvivi->consultarHogaresInsertados($id_vivienda);
+        
+        $this->data['total_hogares'] = $consultaHogares[0]["V_TOT_HOG"];
+        $this->data['total_hogares_insertados'] = $consultaHogaresInsertados[0]["TOTAL"];
+        */
+        $this->data['id_persona'] = $id_persona;
+        $this->data['respuestas'] = $this->mpers->respuestasPersonas($codiEncuesta, $id_vivienda, $id_hogar, $id_persona);
+        var_dump($this->data['respuestas']);
+        
+        $this->data['view'] = 'newForm';
+        $this->load->view('layout', $this->data);
+        
+    }
+
+    public function guardarPersona() {
+        //echo "INGRESO A GUARDAR";exit;
+     //   error_reporting(0);
+        ini_set('max_execution_time', 13600);
+        error_reporting(E_ALL & ~E_NOTICE);
+        $this->load->model('vivienda/modvivienda', 'mvivi');
+        $this->load->model("modpersonas", "mpers");
+
+        $codiEncuesta = $this->session->userdata('codiEncuesta');
+        $codiVivienda = $this->session->userdata('codiVivienda');
+
+        $resp["codi_encuesta"] = $codiEncuesta;
+        $resp["id_vivienda"] = $codiVivienda;
+        $resp["id_persona"] = $_POST["id_persona"];
+
+        $resp["P_SEXO"] = $_POST["p32_sexo"]; 
+        $resp["PA_SABE_FECHA"] = $_POST["p33_sabe_fecha"];
+        if($_POST["p33_dia"]!="" && $_POST["p33_mes"]!="" && $_POST["p33_anio"]!=""){
+            $resp["PA1_FECHA_NAC"] = $_POST["p33_dia"]."/".$_POST["p33_mes"]."/".$_POST["p33_anio"];
+        }else{
+             $resp["PA1_FECHA_NAC"] = NULL;   
+        }
+        $resp["P_EDAD"] = $_POST["p34_anios_cumplidos"];
+        $resp["PA_TIPO_DOC"] = $_POST["p35_tipo_documento"];
+        $resp["PA1_NRO_DOC"] = $_POST["p35_nro_doc"];
+        $resp["P_PARENTESCO"] = $_POST["p36_parentesco_jefe"];
+        $resp["PA1_GRP_ETNIC"] = $_POST["p37_reconoce_como"];
+        $resp["PA11_COD_ETNIA"] = $_POST["p37_codigo_pueblo_indigena"];
+        $resp["PA12_CLAN"] = $_POST["p37_codigo_clan_indigena"];
+        $resp["PA21_COD_VITSA"] = $_POST["p37_codigo_vitsa"];
+        $resp["PA22_COD_KUMPA"] = $_POST["p37_codigo_kumpania"];
+        $resp["PA_HABLA_LENG"] = $_POST["p38_lengua_nativa"];
+        $resp["PA1_ENTIENDE"] = $_POST["p38_entiende"];
+        $resp["PB_OTRAS_LENG"] = $_POST["p38-1_habla_lengua_nativa"];
+        $resp["PA_LUG_NAC"] = $_POST["p39_donde_nacio"];
+        $resp["PA1_DPTO_NAC"] = $_POST["p39_codigo_departamento"];
+        $resp["PA2_MPIO_NAC"] = $_POST["p39_codigo_municipio"];
+        
+        $resp2["codi_encuesta"] = $codiEncuesta;
+        $resp2["id_vivienda"] = $codiVivienda;
+        $resp2["id_persona"] = $_POST["id_persona"];
+        $resp2["PA3_PAIS_NAC"] = $_POST["p39_codigo_pais"];
+        $resp2["PA31_ANO_LLEGO"] = $_POST["p39-1_llego_colombia"];
+        $resp2["PA_VIVIA_5ANOS"] = $_POST["p40_hace5_anios"];
+        $resp2["PA1_DPTO_5ANOS"] = $_POST["p40_codigo_departamento"];
+        $resp2["PA2_MPIO_5ANOS"] = $_POST["p40_codigo_municipio"];
+        $resp2["PA21_CLASE_5ANOS"] = $_POST["p40-1_vivia"];
+        $resp2["PA3_PAIS_5ANO"] = $_POST["p40_codigo_pais"];
+        $resp2["PA31_ANO_LLEGA5"] = $_POST["p40-2_llego_colombia"];
+        $resp2["PA_VIVIA_1ANO"] = $_POST["p41_hace12_meses"];
+        $resp2["PA1_DPTO_1ANO"] = $_POST["p41_codigo_departamento"]; // NO SE GUARDA
+        $resp2["PA2_MPIO_1ANO"] = $_POST["p41_codigo_municipio"];
+        $resp2["PA21_CLASE_1ANO"] = $_POST["p41-1_vivia"];
+        $resp2["PA3_PAIS_1ANO"] = $_POST["p41_codigo_pais"];
+        $resp2["P_ENFERMO"] = $_POST["p42_enfermedad"];
+        $resp2["P_QUEHIZO_PPAL"] = $_POST["p43_tratar_enfermedad"];
+        $resp2["PA_LO_ATENDIERON"] = $_POST["p43-1_atendieron"];
+        $resp2["PA1_CALIDAD_SERV"] = $_POST["p43-2_calidad_servicio"];
+        $resp2["CONDICION_FISICA"] = $_POST["p44_tiene_dificultades"];
+        $resp2["PA_OIR"] = $_POST["p44-1-1_tiene_dificultades"];
+        $resp2["PB_HABLAR"] = $_POST["p44-1-2_tiene_dificultades"];
+
+        $resp3["codi_encuesta"] = $codiEncuesta;
+        $resp3["id_vivienda"] = $codiVivienda;
+        $resp3["id_persona"] = $_POST["id_persona"];
+        $resp3["PC_VER"] = $_POST["p44-1-3_tiene_dificultades"];
+        $resp3["PD_CAMINAR"] = $_POST["p44-1-4_tiene_dificultades"];
+        $resp3["PE_COGER"] = $_POST["p44-1-5_tiene_dificultades"];
+        $resp3["PF_DECIDIR"] = $_POST["p44-1-6_tiene_dificultades"];
+        $resp3["PG_COMER"] = $_POST["p44-1-7_tiene_dificultades"];
+        $resp3["PH_RELACION"] = $_POST["p44-1-8_tiene_dificultades"];
+        $resp3["PI_TAREAS"] = $_POST["p44-1-9_tiene_dificultades"];
+        $resp3["P_LIM_PPAL"] = $_POST["p45_mas_dificultad"];
+        $resp3["P_CAUSA_LIM"] = $_POST["p46_ocasionada"];
+        $resp3["PA_AYUDA_TEC"] = $_POST["p47-1_utiliza"];
+        $resp3["PB_AYUDA_PERS"] = $_POST["p47-2_utiliza"];
+        $resp3["PC_AYUDA_MED"] = $_POST["p47-3_utiliza"];
+        $resp3["PD_AYUDA_ANCES"] = $_POST["p47-4_utiliza"];
+        $resp3["P_CUIDA"] = $_POST["p48_permanece"];
+        $resp3["P_ALFABETA"] = $_POST["p49_sabe"];
+        $resp3["PA_ASISTENCIA"] = $_POST["p50_asiste"];
+        $resp3["P_NIVEL_ANOS"] = $_POST["p51_nivel"];
+        $resp3["P_TRABAJO"] = $_POST["p52_semana"];
+        $resp3["P_EST_CIVIL"] = $_POST["p53_estado_civil"];
+        $resp3["PA_HNV"] = $_POST["p54_hijos"];
+
+
+        $resp4["codi_encuesta"] = $codiEncuesta;
+        $resp4["id_vivienda"] = $codiVivienda;
+        $resp4["id_persona"] = $_POST["id_persona"];
+        $resp4["PA1_THNV"] = $_POST["p54_cuantos"];
+        $resp4["PA2_HNVH"] = $_POST["p54_cuantosH"];
+        $resp4["PA3_HNVM"] = $_POST["p54_cuantosM"];
+        $resp4["PA_HNVS"] = $_POST["p55_hijos_vivos"];
+        $resp4["PA1_THSV"] = $_POST["p55_cuantos"];
+        $resp4["PA2_HSVH"] = $_POST["p55_cuantosH"];
+        $resp4["PA3_HSVM"] = $_POST["p55_cuantosM"];
+        $resp4["PA_HFC"] = $_POST["p56_hijos_fuera"];
+        $resp4["PA1_THFC"] = $_POST["p56_cuantos"];
+        $resp4["PA2_HFCH"] = $_POST["p56_cuantosH"];
+        $resp4["PA3_HFCM"] = $_POST["p56_cuantosM"];
+        $resp4["PA_UHNV"] = $_POST["p57_sabe_mes"];
+        $resp4["PA1_MES_UHNV"] = $_POST["p57_mes"];
+        $resp4["PA2_ANO_UHNV"] = $_POST["p57_anio"];
+
+        var_dump($resp);exit;
+        $resultadoPe = $this->mpers->actualizarDatosPe($resp);
+        if($resultadoPe){
+            $resultadoPe2 = $this->mpers->actualizarDatosPe2($resp2);
+            if($resultadoPe2){
+                $resultadoPe3 = $this->mpers->actualizarDatosPe3($resp3);
+                if($resultadoPe3){
+                    $resultadoPe4 = $this->mpers->actualizarDatosPe4($resp4);
+                    if($resultadoPe4){
+                        redirect(base_url('personas'));
+                    }
+                }
+            }                        
+        }
+    }
+
 }
 //EOC
