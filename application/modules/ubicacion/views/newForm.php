@@ -87,7 +87,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub2_clase" value="3" <?php if( $respuestas[0]["UA_CLASE"]==3 ) { ?>checked="checked"<?php } ?>>
                             <label for="3">Rural disperso (Clase 3)</label>
                         </div>
-                        <button ><a href="javascript:limpiar('ub2_clase',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub2_clase',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -130,7 +130,7 @@ function limpiar(cual, accion){
                                         <label>C&oacute;digo</label>
                                         <input type="number" name="ub3_codigo_tipo_territorio" id="codigo_tipo_territorio" size="10">                      
                                     </div>
-                                    <button ><a href="javascript:limpiar('ub3_tipo_territorio',0)">limpiar</a></button>
+                                     <a href="javascript:limpiar('ub3_tipo_territorio',0)">limpiar</a> 
                                 </fieldset>
                             </div>
                             </fieldset>
@@ -140,7 +140,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub3_territorio" value="2">
                             <label for="1">No</label>
                         </div>
-                        <button ><a href="javascript:limpiar('ub3_territorio',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub3_territorio',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -168,7 +168,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub4_area_protegida" value="2" <?php if( $respuestas[0]["UVA_ESTA_AREAPROT"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>       
-                        <button ><a href="javascript:limpiar('ub4_area_protegida',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub4_area_protegida',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -251,7 +251,7 @@ function limpiar(cual, accion){
                         <br><input type="text" name="ub8_barrio" id="ub8_barrio" size="90">
                     </div>                     
                 </div>                                   
-                <button ><a href="javascript:limpiar('ub8_opcion',0)">limpiar</a></button>
+                 <a href="javascript:limpiar('ub8_opcion',0)">limpiar</a> 
             </div>
             <div class="row">
                 <div class="form-group">
@@ -289,7 +289,7 @@ function limpiar(cual, accion){
                                         <input type="radio" name="ub9_opc_mixta" value="4" <?php if( $respuestas[0]["UVA1_COD_OTROUSO"]==4 ) { ?>checked="checked"<?php } ?>>
                                         <label for="4">Agropecuario, agroindustrial, forestal</label>
                                     </div> <br>
-                                    <button ><a href="javascript:limpiar('ub9_opc_mixta',0)">limpiar</a></button>
+                                     <a href="javascript:limpiar('ub9_opc_mixta',0)">limpiar</a> 
                                 </fieldset>
                             </div>
                         </div>
@@ -345,11 +345,11 @@ function limpiar(cual, accion){
                                         <input type="radio" name="ub9_opc_no_residencial" value="10" <?php if( $respuestas[0]["UVA2_UNDNORESI"]==10 ) { ?>checked="checked"<?php } ?>>
                                         <label for="10">En construcci&oacute;n</label>
                                     </div>
-                                    <button ><a href="javascript:limpiar('ub9_opc_no_residencial',0)">limpiar</a></button>
+                                     <a href="javascript:limpiar('ub9_opc_no_residencial',0)">limpiar</a> 
                                 </fieldset>
                             </div>
                         </div>
-                        <button ><a href="javascript:limpiar('ub9_unidad',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub9_unidad',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -385,7 +385,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub11_realizo" value="3" <?php if( $respuestas[0]["UVA_ECENSO"]==3 ) { ?>checked="checked"<?php } ?>>
                             <label for="3">No Sabe</label>
                         </div>
-                        <button ><a href="javascript:limpiar('ub11_realizo',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub11_realizo',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -401,7 +401,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub11_1_cambio" value="2" <?php if( $respuestas[0]["H_CAMBIO_DIR"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>
-                        <button ><a href="javascript:limpiar('ub11_1_cambio',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub11_1_cambio',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -421,7 +421,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub11_2_mas_hogar" value="3" <?php if( $respuestas[0]["UVA1_MASHOG"]==3 ) { ?>checked="checked"<?php } ?>>
                             <label for="3">No hay m&aacute;s hogares, y este hogar No cambi&oacute; de residencia (Pregunta 11.1 = 2)</label>
                         </div>
-                        <button ><a href="javascript:limpiar('ub11_2_mas_hogar',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub11_2_mas_hogar',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -449,7 +449,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub12_visitado" value="3" <?php if( $respuestas[0]["UVA_ECENSO6"]==3 ) { ?>checked="checked"<?php } ?>>
                             <label for="3">No Sabe</label>
                         </div>
-                        <button ><a href="javascript:limpiar('ub12_visitado',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub12_visitado',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -465,7 +465,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub12_1_mas_hogares" value="2" <?php if( $respuestas[0]["UVA1_MASHOG6"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>
-                        <button ><a href="javascript:limpiar('ub12_1_mas_hogares',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub12_1_mas_hogares',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -541,7 +541,7 @@ function limpiar(cual, accion){
                                         <label>Nombre del territorio</label> 
                                         <input type="text" name="ub13_nombre_territorio_sanandres" id="ub13_nombre_territorio_sanandres">                      
                                     </div><br>
-                                    <button ><a href="javascript:limpiar('ub13_territorio',0)">limpiar</a></button>
+                                     <a href="javascript:limpiar('ub13_territorio',0)">limpiar</a> 
                                 </fieldset>
                             </div>
                             </fieldset>
@@ -551,7 +551,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="ub13_vivienda_etnico" value="2" <?php if( $respuestas[0]["UVA_VIVTERETNICO"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>
-                        <button ><a href="javascript:limpiar('ub13_vivienda_etnico',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('ub13_vivienda_etnico',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -593,7 +593,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="vv14_tipo_vivienda" value="6" <?php if( $respuestas[0]["V_TIPO_VIV"]==6 ) { ?>checked="checked"<?php } ?>>
                             <label for="6">Otro (contenedor, carpa, embarcaci&oacute;n, vag&oacute;n, cueva, refugio natural, etc.)</label>
                         </div>
-                        <button ><a href="javascript:limpiar('vv14_tipo_vivienda',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('vv14_tipo_vivienda',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -618,7 +618,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="vv15_ocupacion_vivienda" value="4" <?php if( $respuestas[0]["V_CON_OCUP"]==4 ) { ?>checked="checked"<?php } ?>>
                             <label for="4">Desocupada</label>
                         </div>
-                        <button ><a href="javascript:limpiar('vv15_ocupacion_vivienda',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('vv15_ocupacion_vivienda',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -673,7 +673,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="vv17_material_vivienda" value="9" <?php if( $respuestas[0]["V_MAT_PARED"]==9 ) { ?>checked="checked"<?php } ?>>
                             <label for="9">No tiene paredes</label>
                         </div>
-                        <button ><a href="javascript:limpiar('vv17_material_vivienda',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('vv17_material_vivienda',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -705,7 +705,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="vv18_material_vivienda" value="6" <?php if( $respuestas[0]["V_MAT_PISO"]==6 ) { ?>checked="checked"<?php } ?>>
                             <label for="6">Tierra, arena, barro</label>
                         </div>
-                        <button ><a href="javascript:limpiar('vv18_material_vivienda',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('vv18_material_vivienda',0)">limpiar</a> 
                     </fieldset> 
                 </div>
             </div>
@@ -731,7 +731,7 @@ function limpiar(cual, accion){
                     <div class="col-xs-4 col-sm-4 col-md-4">                        
                         <input type="radio" name="vv19_energia_electrica" value="2" <?php if( $respuestas[0]["EVA_EE"]==2 ) { ?>checked="checked"<?php } ?>>
                         <label for="2">No</label>                            
-                        <button ><a href="javascript:limpiar('vv19_energia_electrica',0)">limpiar</a>
+                         <a href="javascript:limpiar('vv19_energia_electrica',0)">limpiar</a>
                     </div>
                 </div>
             </div>
@@ -747,7 +747,7 @@ function limpiar(cual, accion){
                     <div class="col-xs-4 col-sm-4 col-md-4">                        
                         <input type="radio" name="vv19_acueducto" value="2" <?php if( $respuestas[0]["VB_ACU"]==2 ) { ?>checked="checked"<?php } ?>>
                         <label for="2">No</label>                            
-                        <button ><a href="javascript:limpiar('vv19_acueducto',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('vv19_acueducto',0)">limpiar</a> 
                     </div>
                 </div>
             </div>
@@ -763,7 +763,7 @@ function limpiar(cual, accion){
                     <div class="col-xs-4 col-sm-4 col-md-4">                        
                         <input type="radio" name="vv19_alcantarillado" value="2" <?php if( $respuestas[0]["VC_ALC"]==2 ) { ?>checked="checked"<?php } ?>>
                         <label for="2">No</label>
-                        <button ><a href="javascript:limpiar('vv19_alcantarillado',0)">limpiar</a></button>                            
+                         <a href="javascript:limpiar('vv19_alcantarillado',0)">limpiar</a>                             
                     </div>
                 </div>
             </div>
@@ -779,7 +779,7 @@ function limpiar(cual, accion){
                     <div class="col-xs-4 col-sm-4 col-md-4">                        
                         <input type="radio" name="vv19_gas" value="2" <?php if( $respuestas[0]["VD_GAS"]==2 ) { ?>checked="checked"<?php } ?>>
                         <label for="2">No</label>      
-                        <button ><a href="javascript:limpiar('vv19_gas',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('vv19_gas',0)">limpiar</a> 
                     </div>
                 </div>
             </div>
@@ -803,7 +803,7 @@ function limpiar(cual, accion){
                     <div class="col-xs-4 col-sm-4 col-md-4">                        
                         <input type="radio" name="vv19_basura" value="2" <?php if( $respuestas[0]["VE_RECBAS"]==2 ) { ?>checked="checked"<?php } ?>>
                         <label for="2">No</label>                            
-                        <button ><a href="javascript:limpiar('vv19_basura',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('vv19_basura',0)">limpiar</a> 
                     </div>
                 </div>
             </div>
@@ -819,7 +819,7 @@ function limpiar(cual, accion){
                     <div class="col-xs-4 col-sm-4 col-md-4">                        
                         <input type="radio" name="vv19_internet" value="2" <?php if( $respuestas[0]["VF_INTERNET"]==2 ) { ?>checked="checked"<?php } ?>>
                         <label for="2">No</label> 
-                        <button ><a href="javascript:limpiar('vv19_internet',0)">limpiar</a></button>                           
+                         <a href="javascript:limpiar('vv19_internet',0)">limpiar</a>                            
                     </div>
                 </div>
             </div>
@@ -851,14 +851,14 @@ function limpiar(cual, accion){
                             <input type="radio" name="vv20_sanitario" value="6" <?php if( $respuestas[0]["V_TIPO_SERSA"]==6 ) { ?>checked="checked"<?php } ?>>
                             <label for="6">Esta vivienda no tiene servicio sanitario?</label>
                         </div>
-                        <button ><a href="javascript:limpiar('vv20_sanitario',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('vv20_sanitario',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                    <button type="submit" class="btn btn-dane-success">Guardar<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </button>   
+                    <button type="submit" class="btn btn-dane-success">Guardar<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>     
                 </div>
             </div>
         </form>

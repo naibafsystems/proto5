@@ -1091,8 +1091,10 @@ class Modpersonas extends MY_model {
         $datosInsert['FECHA_MODIFICACION'] = "SYSDATE";
         $datosInsert['USUARIO_MODIFICACION'] = $this->session->userdata('id');
         $datosInsert['P_SEXO'] =           $resp["P_SEXO"];            
-        $datosInsert['PA_SABE_FECHA'] =    $resp["PA_SABE_FECHA"];   
-        $datosInsert['PA1_FECHA_NAC'] =    $resp["PA1_FECHA_NAC"];   
+        $datosInsert['PA_SABE_FECHA'] =    $resp["PA_SABE_FECHA"];  
+        if($resp["PA1_FECHA_NAC"]!=""){
+            $datosInsert['PA1_FECHA_NAC'] =    $resp["PA1_FECHA_NAC"];   
+        }
         $datosInsert['P_EDAD'] =           $resp["P_EDAD"];          
         $datosInsert['PA_TIPO_DOC'] =      $resp["PA_TIPO_DOC"];     
         $datosInsert['PA1_NRO_DOC'] =      $resp["PA1_NRO_DOC"];     

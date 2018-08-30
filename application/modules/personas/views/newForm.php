@@ -56,7 +56,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p32_sexo" value="2" <?php if( $respuestas[0]["P_SEXO"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">Mujer</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p32_sexo',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p32_sexo',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -69,16 +69,23 @@ function limpiar(cual, accion){
                             <label for="1">S&iacute;</label>
                             <fieldset>
                                 <?php 
+
+                                //echo $respuestas[0]["PA1_FECHA_NAC"];exit;
+                                //$array_fecha = explode("-", $respuestas[0]["PA1_FECHA_NAC"]);
+                                //$mes = date("d",$array_fecha[1]);
+                                //echo $mes;exit;
+                                //var_dump($array_fecha);exit;
+                                //echo $array_fecha[0];exit;
                                 ?>
                                 <div class="col-xs-1 col-sm-1 col-md-1">
                                 </div>
                                 <div class="col-xs-11 col-sm-11 col-md-11">                        
                                     <label>D&iacute;a</label>
-                                    <input type="number" name="p33_dia" id="p33_dia" max=31 value="<?php echo $respuestas[0]["PA1_FECHA_NAC"]; ?>" >                      
+                                    <input type="number" name="p33_dia" id="p33_dia" max=31 value="<?php echo $array_fecha[0]; ?>" >                      
                                     <label>Mes</label>
-                                    <input type="number" name="p33_mes" id="p33_mes" max=12 value="<?php echo $respuestas[0]["PA1_FECHA_NAC"]; ?>" >                      
+                                    <input type="number" name="p33_mes" id="p33_mes" max=12 value="<?php echo $array_fecha[1]; ?>" >                      
                                     <label>A&ntilde;o</label>
-                                    <input type="number" name="p33_anio" id="p33_anio" max=2020 value="<?php echo $respuestas[0]["PA1_FECHA_NAC"]; ?>" >
+                                    <input type="number" name="p33_anio" id="p33_anio" max=2020 value="<?php echo $array_fecha[2]; ?>" >
                                 </div>
                             </fieldset>
                         </div>
@@ -86,7 +93,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p33_sabe_fecha" value="2" <?php if( $respuestas[0]["PA_SABE_FECHA"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No sabe</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p33_sabe_fecha',0)">limpiar</a></button>                        
+                         <a href="javascript:limpiar('p33_sabe_fecha',0)">limpiar</a>                         
                     </fieldset>
                 </div>
             </div>
@@ -141,7 +148,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p35_tipo_documento" value="7" <?php if( $respuestas[0]["PA_TIPO_DOC"]==7 ) { ?>checked="checked"<?php } ?>>
                             <label for="7">No responde</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p35_tipo_documento',0)">limpiar</a></button>                        
+                         <a href="javascript:limpiar('p35_tipo_documento',0)">limpiar</a>                         
                     </fieldset>
                 </div>
             </div>
@@ -213,7 +220,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p36_parentesco_jefe" value="16" <?php if( $respuestas[0]["P_PARENTESCO"]==16 ) { ?>checked="checked"<?php } ?>>
                             <label for="16">No pariente</label>
                         </div>     
-                        <button ><a href="javascript:limpiar('p36_parentesco_jefe',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p36_parentesco_jefe',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -315,7 +322,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p37_reconoce_como" value="6" <?php if( $respuestas[0]["PA1_GRP_ETNIC"]==6 ) { ?>checked="checked"<?php } ?>>
                             <label for="6">Ning&uacute;n grupo &eacute;tnico</label><h6>Contin&uacute;e con la pregunta 39</h6>
                         </div> 
-                        <button ><a href="javascript:limpiar('p37_reconoce_como',0)">limpiar</a></button>                       
+                         <a href="javascript:limpiar('p37_reconoce_como',0)">limpiar</a>                        
                     </fieldset>
                 </div>
             </div>
@@ -331,7 +338,7 @@ function limpiar(cual, accion){
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p38_lengua_nativa" value="2" <?php if( $respuestas[0]["PA_HABLA_LENG"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label><br>
-                            <button ><a href="javascript:limpiar('p38_lengua_nativa',0)">limpiar</a></button>
+                             <a href="javascript:limpiar('p38_lengua_nativa',0)">limpiar</a> 
                             <div class="form-group">
 	                            <fieldset>
 	                            <div class="col-xs-1 col-sm-1 col-md-1">
@@ -351,7 +358,7 @@ function limpiar(cual, accion){
 	                                <input type="radio" name="p38_entiende" value="2" <?php if( $respuestas[0]["PA1_ENTIENDE"]==2 ) { ?>checked="checked"<?php } ?>>
 	                                <label for="2">No</label>
 	                            </div>
-                                <button ><a href="javascript:limpiar('p38_entiende',0)">limpiar</a></button>
+                                 <a href="javascript:limpiar('p38_entiende',0)">limpiar</a> 
 	                            </fieldset>
 	                        </div>
                         </div>                      
@@ -378,7 +385,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p38-1_habla_lengua_nativa" value="2" <?php if( $respuestas[0]["PB_OTRAS_LENG"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>                      
-                        <button ><a href="javascript:limpiar('p38-1_habla_lengua_nativa',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p38-1_habla_lengua_nativa',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -409,7 +416,7 @@ function limpiar(cual, accion){
                                 </div>
                                 <div class="col-xs-5 col-sm-5 col-md-5">                        
                                     <label>C&oacute;digo municipio</label>
-                                    <input type="number" name="p39_codigo_municipio" id="p39_codigo_municipio" max=999 value="<?php echo $respuestas[0]["PA2_MPIO_NAC"]; ?>">
+                                    <input type="number" name="p39_codigo_municipio" id="p39_codigo_municipio" max=99999 value="<?php echo $respuestas[0]["PA2_MPIO_NAC"]; ?>">
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">                        
                                     <label>Nombre del municipio</label>
@@ -437,7 +444,7 @@ function limpiar(cual, accion){
                                 </div>                                                        
                             </fieldset>
                         </div>  
-                        <button ><a href="javascript:limpiar('p39_donde_nacio',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p39_donde_nacio',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -473,7 +480,7 @@ function limpiar(cual, accion){
                                 </div>
                                 <div class="col-xs-5 col-sm-5 col-md-5">                        
                                     <label>C&oacute;digo municipio</label>
-                                    <input type="number" name="p40_codigo_municipio" id="p40_codigo_municipio" max=999 value="<?php echo $respuestas[0]["PA2_MPIO_5ANOS"]; ?>">
+                                    <input type="number" name="p40_codigo_municipio" id="p40_codigo_municipio" max=99999 value="<?php echo $respuestas[0]["PA2_MPIO_5ANOS"]; ?>">
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">                        
                                     <label>Nombre del municipio</label>
@@ -507,7 +514,7 @@ function limpiar(cual, accion){
 	                                    <label for="3">El rural disperso? (vereda, campo, resguardo, territorio colectivo</label>
 	                                    <h6>Contin&uacute;e con la pregunta 41</h6>
                                         <br>
-                                        <button ><a href="javascript:limpiar('p40-1_vivia',0)">limpiar</a></button>
+                                         <a href="javascript:limpiar('p40-1_vivia',0)">limpiar</a> 
 	                                </div>
                                 </div>
                             </fieldset>
@@ -526,7 +533,7 @@ function limpiar(cual, accion){
                                     <label>Nombre del pais</label>
                                     <input type="text" name="p40_nombre_pais" id="p40_nombre_pais">
                                 </div><br>
-                                <button ><a href="javascript:limpiar('p40_hace5_anios',0)">limpiar</a></button>
+                                 <a href="javascript:limpiar('p40_hace5_anios',0)">limpiar</a> 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <h4><b>40.2 ¿En qu&eacute; a&ntilde;o lleg&oacute; a Colombia?</b></h4>
                                     <input type="number" name="p40-2_llego_colombia" id="p40-2_llego_colombia" max=2018 value="<?php echo $respuestas[0]["PA31_ANO_LLEGA5"]; ?>">
@@ -568,7 +575,7 @@ function limpiar(cual, accion){
                                 </div>
                                 <div class="col-xs-5 col-sm-5 col-md-5">                        
                                     <label>C&oacute;digo municipio</label>
-                                    <input type="number" name="p41_codigo_municipio" id="p41_codigo_municipio" max=999 value="<?php echo $respuestas[0]["PA2_MPIO_1ANO"]; ?>">
+                                    <input type="number" name="p41_codigo_municipio" id="p41_codigo_municipio" max=99999 value="<?php echo $respuestas[0]["PA2_MPIO_1ANO"]; ?>">
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">                        
                                     <label>Nombre del municipio</label>
@@ -602,7 +609,7 @@ function limpiar(cual, accion){
 	                                    <label for="3">El rural disperso? (vereda, campo, resguardo, territorio colectivo</label>
 	                                    <h6>Contin&uacute;e con la pregunta 41</h6>
                                         <br>
-                                        <button ><a href="javascript:limpiar('p41-1_vivia',0)">limpiar</a></button>
+                                         <a href="javascript:limpiar('p41-1_vivia',0)">limpiar</a> 
 	                                </div>
                                 </div>
                             </fieldset>
@@ -621,7 +628,7 @@ function limpiar(cual, accion){
                                     <label>Nombre del pais</label>
                                     <input type="text" name="p41_nombre_pais" id="p41_nombre_pais">
                                 </div>    
-                                <button ><a href="javascript:limpiar('p41_nombre_pais',0)">limpiar</a></button>
+                                 <a href="javascript:limpiar('p41_nombre_pais',0)">limpiar</a> 
                             </fieldset>
                         </div>          
                     </fieldset>
@@ -640,7 +647,7 @@ function limpiar(cual, accion){
                             <label for="2">No</label>
                             <h6>Contin&uacute;e con la pregunta 44</h6>
                         </div>
-                        <button ><a href="javascript:limpiar('p42_enfermedad',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p42_enfermedad',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -693,7 +700,7 @@ function limpiar(cual, accion){
 				                                <div class="col-xs-8 col-sm-8 col-md-8">   
 				                              		<input type="radio" name="p43-2_calidad_servicio" value="4" <?php if( $respuestas[0]["PA1_CALIDAD_SERV"]==4 ) { ?>checked="checked"<?php } ?>>
 		                            				<label for="4">Muy Malo</label> 
-                                                    <button ><a href="javascript:limpiar('p43-2_calidad_servicio',0)">limpiar</a></button>                    
+                                                     <a href="javascript:limpiar('p43-2_calidad_servicio',0)">limpiar</a>                     
 				                                </div>	
 		                            		</fieldset>
 		                            	</div>
@@ -703,7 +710,7 @@ function limpiar(cual, accion){
 	                                <div class="col-xs-10 col-sm-10 col-md-10">   
 	                                	<input type="radio" name="p43-1_atendieron" value="2" <?php if( $respuestas[0]["PA_LO_ATENDIERON"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            		<label for="2">No</label>                     
-                                        <button ><a href="javascript:limpiar('p43-1_atendieron',0)">limpiar</a></button>
+                                         <a href="javascript:limpiar('p43-1_atendieron',0)">limpiar</a> 
 	                                </div>
 	                            </fieldset>
                             </div>
@@ -740,7 +747,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p43_tratar_enfermedad" value="9" <?php if( $respuestas[0]["P_QUEHIZO_PPAL"]==9 ) { ?>checked="checked"<?php } ?>>
                             <label for="9">No hizo nada</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p43_tratar_enfermedad',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p43_tratar_enfermedad',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -850,7 +857,7 @@ function limpiar(cual, accion){
                             <h6>- Si la persona es menor de 5 a&ntilde;os, contin&uacute;e con la pregunta 48</h6>
 							<h6>- Si la persona tiene 5 a&ntilde;os o m&aacute;s, contin&uacute;e con la pregunta 49</h6>
                         </div>
-                        <button ><a href="javascript:limpiar('p44_tiene_dificultades',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p44_tiene_dificultades',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -902,7 +909,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p46_ocasionada" value="9" <?php if( $respuestas[0]["P_CAUSA_LIM"]==9 ) { ?>checked="checked"<?php } ?>>
                             <label for="9">No sabe</label>
                         </div> 
-                        <button ><a href="javascript:limpiar('p46_ocasionada',0)">limpiar</a></button>                       
+                         <a href="javascript:limpiar('p46_ocasionada',0)">limpiar</a>                        
                     </fieldset>
                 </div>
             </div>
@@ -921,7 +928,7 @@ function limpiar(cual, accion){
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
 	                            <input type="radio" name="p47-1_utiliza" value="2" <?php if( $respuestas[0]["PA_AYUDA_TEC"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            <label for="2">No</label>
-                                <button ><a href="javascript:limpiar('p47-1_utiliza',0)">limpiar</a></button>
+                                 <a href="javascript:limpiar('p47-1_utiliza',0)">limpiar</a> 
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -937,7 +944,7 @@ function limpiar(cual, accion){
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
 	                            <input type="radio" name="p47-2_utiliza" value="2" <?php if( $respuestas[0]["PB_AYUDA_PERS"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            <label for="2">No</label>
-                                <button ><a href="javascript:limpiar('p47-2_utiliza',0)">limpiar</a></button>
+                                 <a href="javascript:limpiar('p47-2_utiliza',0)">limpiar</a> 
 	                        </div>
 	                    </div> 
 	                    <div class="form-group">
@@ -953,7 +960,7 @@ function limpiar(cual, accion){
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
 	                            <input type="radio" name="p47-3_utiliza" value="2" <?php if( $respuestas[0]["PC_AYUDA_MED"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            <label for="2">No</label>
-                                <button ><a href="javascript:limpiar('p47-3_utiliza',0)">limpiar</a></button>
+                                 <a href="javascript:limpiar('p47-3_utiliza',0)">limpiar</a> 
 	                        </div>
 	                    </div>  
 	                    <div class="form-group">
@@ -969,7 +976,7 @@ function limpiar(cual, accion){
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
 	                            <input type="radio" name="p47-4_utiliza" value="2" <?php if( $respuestas[0]["PD_AYUDA_ANCES"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            <label for="2">No</label>
-                                <button ><a href="javascript:limpiar('p47-4_utiliza',0)">limpiar</a></button>
+                                 <a href="javascript:limpiar('p47-4_utiliza',0)">limpiar</a> 
 	                        </div>
 	                    </div>                                             
                     </fieldset>
@@ -1012,7 +1019,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p48_permanece" value="7" <?php if( $respuestas[0]["P_CUIDA"]==7 ) { ?>checked="checked"<?php } ?>>
                             <label for="7">En la vivienda, solo?</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p48_permanece',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p48_permanece',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -1033,7 +1040,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p49_sabe" value="2" <?php if( $respuestas[0]["P_ALFABETA"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p49_sabe',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p49_sabe',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -1049,7 +1056,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p50_asiste" value="2" <?php if( $respuestas[0]["PA_ASISTENCIA"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p50_asiste',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p50_asiste',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -1328,7 +1335,7 @@ function limpiar(cual, accion){
 	                            <label for="44">0</label>
 	                        </div>
 	                    </div>
-                        <button ><a href="javascript:limpiar('p51_nivel',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p51_nivel',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -1377,7 +1384,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p52_semana" value="9" <?php if( $respuestas[0]["P_TRABAJO"]==9 ) { ?>checked="checked"<?php } ?>>
                             <label for="9">Estuvo en otra situaci&oacute;n?</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p52_semana',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p52_semana',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -1413,7 +1420,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p53_estado_civil" value="7" <?php if( $respuestas[0]["P_EST_CIVIL"]==7 ) { ?>checked="checked"<?php } ?>>
                             <label for="7">Soltero(a)?</label>
                         </div>
-                        <button ><a href="javascript:limpiar('p53_estado_civil',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p53_estado_civil',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -1450,7 +1457,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p54_hijos" value="2" <?php if( $respuestas[0]["PA_HNV"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div> 
-                        <button ><a href="javascript:limpiar('p54_hijos',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('p54_hijos',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -1482,7 +1489,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p55_hijos_vivos" value="2" <?php if( $respuestas[0]["PA_HNVS"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No sabe</label>
                         </div> 
-                        <button ><a href="javascript:limpiar('p55_hijos_vivos',0)">limpiar</a></button>                      
+                         <a href="javascript:limpiar('p55_hijos_vivos',0)">limpiar</a>                       
                     </fieldset>
                 </div>
             </div>
@@ -1514,7 +1521,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p56_hijos_fuera" value="2" <?php if( $respuestas[0]["PA_HFC"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No sabe</label>
                         </div> 
-                        <button ><a href="javascript:limpiar('p56_hijos_fuera',0)">limpiar</a></button>                       
+                         <a href="javascript:limpiar('p56_hijos_fuera',0)">limpiar</a>                        
                     </fieldset>
                 </div>
             </div>
@@ -1593,7 +1600,7 @@ function limpiar(cual, accion){
 	                            		<input type="radio" name="p57_mes" value="12" <?php if( $respuestas[0]["PA1_MES_UHNV"]==12 ) { ?>checked="checked"<?php } ?>>
 	                            		<label for="12">Diciembre</label>
 	                            	</div>
-                                    <button ><a href="javascript:limpiar('p57_mes',0)">limpiar</a></button>
+                                     <a href="javascript:limpiar('p57_mes',0)">limpiar</a> 
 	                            	
 	                            	<div class="col-xs-1 col-sm-1 col-md-1">  
 	                            	</div>
@@ -1608,7 +1615,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="p57_sabe_mes" value="2" <?php if( $respuestas[0]["PA_UHNV"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No sabe</label>
                         </div>     
-                        <button ><a href="javascript:limpiar('p57_sabe_mes',0)">limpiar</a></button>                   
+                         <a href="javascript:limpiar('p57_sabe_mes',0)">limpiar</a>                    
                     </fieldset>
                 </div>
             </div>
@@ -1620,7 +1627,7 @@ function limpiar(cual, accion){
                 <div class="form-group">
                     <input type="hidden" name="id_persona" value="<?php echo $id_persona; ?>" readonly>
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                    <button type="submit" class="btn btn-dane-success">Guardar<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </button>   
+                    <button type="submit" class="btn btn-dane-success">Guardar<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>  </button>   
                 </div>
             </div>
         </form>

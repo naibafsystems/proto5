@@ -96,7 +96,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="hg24_prepara_alimentos" value="6" <?php if( $respuestas[0]["H_DONDE_PREPALIM"]==6 ) { ?>checked="checked"<?php } ?>>
                             <label for="6">No preparan alimentos en la vivienda?</label>
                         </div>
-                        <button ><a href="javascript:limpiar('hg24_prepara_alimentos',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('hg24_prepara_alimentos',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -149,7 +149,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="hg25_obtiene_agua" value="11" <?php if( $respuestas[0]["H_AGUA_COCIN"]==11 ) { ?>checked="checked"<?php } ?>>
                             <label for="11">Agua embotellada o en bolsa?</label>
                         </div>
-                        <button ><a href="javascript:limpiar('hg25_obtiene_agua',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('hg25_obtiene_agua',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -264,7 +264,7 @@ function limpiar(cual, accion){
             <div class="row">
                 <div class="form-group">
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                    <button type="submit" class="btn btn-dane-success">Guardar<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </button>   
+                    <button type="submit" class="btn btn-dane-success">Guardar<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </button>    
                 </div>
             </div>
         </form>

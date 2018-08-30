@@ -1326,9 +1326,13 @@ class Ubicacion extends MX_Controller {
         if($_POST["ub1_codigo_mun"] == 0){
             $resp["ub_codigo_mun"] = NULL;            
         }else{
-            $resp["ub_codigo_mun"] = $_POST["ub1_codigo_mun"];
+            if(strlen($_POST["ub1_codigo_mun"])>3){
+                $resp["ub_codigo_mun"] = $_POST["ub1_codigo_mun"];
+            }else{
+                $resp["ub_codigo_mun"] = $_POST["ub1_codigo_depto"].$_POST["ub1_codigo_mun"];
+            }
         }        
-
+        
         
         $resp["ub_clase"] = $_POST["ub2_clase"]; 
         $resp["ub_nombre_clase"] = $_POST["ub2_nombre_clase"]; // NO SE GUARDA        

@@ -655,7 +655,7 @@ class Personas extends MX_Controller {
         if($_POST["p33_dia"]!="" && $_POST["p33_mes"]!="" && $_POST["p33_anio"]!=""){
             $resp["PA1_FECHA_NAC"] = $_POST["p33_dia"]."/".$_POST["p33_mes"]."/".$_POST["p33_anio"];
         }else{
-             $resp["PA1_FECHA_NAC"] = NULL;   
+            // $resp["PA1_FECHA_NAC"] = NULL;   
         }
         $resp["P_EDAD"] = $_POST["p34_anios_cumplidos"];
         $resp["PA_TIPO_DOC"] = $_POST["p35_tipo_documento"];
@@ -671,7 +671,11 @@ class Personas extends MX_Controller {
         $resp["PB_OTRAS_LENG"] = $_POST["p38-1_habla_lengua_nativa"];
         $resp["PA_LUG_NAC"] = $_POST["p39_donde_nacio"];
         $resp["PA1_DPTO_NAC"] = $_POST["p39_codigo_departamento"];
-        $resp["PA2_MPIO_NAC"] = $_POST["p39_codigo_municipio"];
+        if(strlen($_POST["p39_codigo_municipio"])>3){
+            $resp["PA2_MPIO_NAC"] = $_POST["p39_codigo_municipio"];
+        }else{
+            $resp["PA2_MPIO_NAC"] = $_POST["p39_codigo_departamento"].$_POST["p39_codigo_municipio"];
+        }
         
         $resp2["codi_encuesta"] = $codiEncuesta;
         $resp2["id_vivienda"] = $codiVivienda;
@@ -680,13 +684,21 @@ class Personas extends MX_Controller {
         $resp2["PA31_ANO_LLEGO"] = $_POST["p39-1_llego_colombia"];
         $resp2["PA_VIVIA_5ANOS"] = $_POST["p40_hace5_anios"];
         $resp2["PA1_DPTO_5ANOS"] = $_POST["p40_codigo_departamento"];
-        $resp2["PA2_MPIO_5ANOS"] = $_POST["p40_codigo_municipio"];
+        if(strlen($_POST["p40_codigo_municipio"])>3){
+            $resp2["PA2_MPIO_5ANOS"] = $_POST["p40_codigo_municipio"];
+        }else{
+            $resp2["PA2_MPIO_5ANOS"] = $_POST["p40_codigo_departamento"].$_POST["p40_codigo_municipio"];
+        }
         $resp2["PA21_CLASE_5ANOS"] = $_POST["p40-1_vivia"];
         $resp2["PA3_PAIS_5ANO"] = $_POST["p40_codigo_pais"];
         $resp2["PA31_ANO_LLEGA5"] = $_POST["p40-2_llego_colombia"];
         $resp2["PA_VIVIA_1ANO"] = $_POST["p41_hace12_meses"];
         $resp2["PA1_DPTO_1ANO"] = $_POST["p41_codigo_departamento"]; // NO SE GUARDA
-        $resp2["PA2_MPIO_1ANO"] = $_POST["p41_codigo_municipio"];
+        if(strlen($_POST["p41_codigo_municipio"])>3){
+            $resp2["PA2_MPIO_1ANO"] = $_POST["p41_codigo_municipio"];
+        }else{
+            $resp2["PA2_MPIO_1ANO"] = $_POST["p41_codigo_departamento"].$_POST["p41_codigo_municipio"];
+        }
         $resp2["PA21_CLASE_1ANO"] = $_POST["p41-1_vivia"];
         $resp2["PA3_PAIS_1ANO"] = $_POST["p41_codigo_pais"];
         $resp2["P_ENFERMO"] = $_POST["p42_enfermedad"];

@@ -96,7 +96,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="hg24_prepara_alimentos" value="6">
                             <label for="6">No preparan alimentos en la vivienda?</label>
                         </div>
-                        <button ><a href="javascript:limpiar('hg24_prepara_alimentos',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('hg24_prepara_alimentos',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -149,7 +149,7 @@ function limpiar(cual, accion){
                             <input type="radio" name="hg25_obtiene_agua" value="11">
                             <label for="11">Agua embotellada o en bolsa?</label>
                         </div>
-                        <button ><a href="javascript:limpiar('hg25_obtiene_agua',0)">limpiar</a></button>
+                         <a href="javascript:limpiar('hg25_obtiene_agua',0)">limpiar</a> 
                     </fieldset>
                 </div>
             </div>
@@ -199,7 +199,7 @@ function limpiar(cual, accion){
                                     <input type="radio" name="hg26_sexo_<?php echo $i; ?>" value="2">
                                 </td>
                                 <td>
-                                    <button><a href="javascript:limpiar('hg26_sexo_<?php echo $i; ?>',0)">limpiar</a></button>
+                                    <a href="javascript:limpiar('hg26_sexo_<?php echo $i; ?>',0)">limpiar</a> 
                                 </td>     
                                 <td>
                                     <input type="number" name="hg26_edad_<?php echo $i; ?>" id="hg26_edad" max="999">
@@ -214,7 +214,7 @@ function limpiar(cual, accion){
                                     <input type="radio" name="hg26_certificado_defuncion_<?php echo $i; ?>" value="3">
                                 </td>  
                                 <td>
-                                    <button ><a href="javascript:limpiar('hg26_certificado_defuncion_<?php echo $i; ?>',0)">limpiar</a></button>
+                                     <a href="javascript:limpiar('hg26_certificado_defuncion_<?php echo $i; ?>',0)">limpiar</a> 
                                 </td>     
                             </tr>
                             <?php
@@ -270,7 +270,7 @@ function limpiar(cual, accion){
             <div class="row">
                 <div class="form-group">
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                    <button type="submit" class="btn btn-dane-success">Guardar<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </button>   
+                    <button type="submit" class="btn btn-dane-success">Guardar<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </button>    
                 </div>
             </div>
         </form>

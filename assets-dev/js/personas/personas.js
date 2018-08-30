@@ -73,24 +73,25 @@ $(function () {
         errorClass: 'error-form',
         rules: {
             numero_visita: {required: true},
-            dia: {required: true, min:1, max:31},
+            /*dia: {required: true, min:1, max:31},
             mes: {required: true, min:1, max:12},
             anio: {required: true, min:2018, max:2018},
-            
+            */
             
             resultado_entrevista: {required: true},
             
             
-            nume_certificado: {maxlength:9}
+            nume_certificado: {required: true, maxlength:9}
         },
         messages: {
             numero_visita: {required: 'Error: Seleccione el número de visita.'},
-            dia: {required: 'Error: El campo día es obligatorio.'},
+            /*dia: {required: 'Error: El campo día es obligatorio.'},
             mes: {required: 'Error: El campo mes es obligatorio.'},
             anio: {required: 'Error: El campo año es obligatorio.'},
-            
+            */
             
             resultado_entrevista: {required: 'Error:  Seleccione el resultado de la entrevista.'},
+            nume_certificado: {required: 'Error:  Digite el n&uacute;mero del certificado.'}
             
             
         },
