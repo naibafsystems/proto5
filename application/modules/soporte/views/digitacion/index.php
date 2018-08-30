@@ -84,7 +84,7 @@ if(!empty($msgErrorFD)) {
                                     <div class="form-group">
                                         <label for="textNumformulario">Número de formulario</label>
                                         <div id="divNumformulario" class="input-group date">
-                                            <input type="text" id="textNumformulario" name="textNumformulario" value="" class="form-control">
+                                            <input type="text" id="textNumformulario" name="textNumformulario" value="" maxlength="9" class="form-control">
                                         </div>
                                     </div>
 
