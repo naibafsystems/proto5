@@ -1,3 +1,16 @@
+<script>
+function limpiar(cual, accion){
+// Action: 0=Deseleccionar todos 1=Seleccionar todos -1=Invertir seleccion
+    var f = document.frmUbicacionN
+    for (var i=0; i<f.elements.length; i++){
+        var obj = f.elements[i]
+        var name = obj.name
+        if (name==cual){
+            obj.checked = ((accion==1)? true : ((accion==0)? false : !obj.checked) );
+        }
+    }
+}
+</script>
 <div class="row">
     <div id="divForm" class="col-xs-12 col-sm-12 col-md-12">
         <form id="frmUbicacionN" name="frmUbicacionN" role="form" method="post" action="<?php echo base_url('hogar/guardarHogar') ?>">
@@ -83,6 +96,7 @@
                             <input type="radio" name="hg24_prepara_alimentos" value="6" <?php if( $respuestas[0]["H_DONDE_PREPALIM"]==6 ) { ?>checked="checked"<?php } ?>>
                             <label for="6">No preparan alimentos en la vivienda?</label>
                         </div>
+                        <button ><a href="javascript:limpiar('hg24_prepara_alimentos',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -135,6 +149,7 @@
                             <input type="radio" name="hg25_obtiene_agua" value="11" <?php if( $respuestas[0]["H_AGUA_COCIN"]==11 ) { ?>checked="checked"<?php } ?>>
                             <label for="11">Agua embotellada o en bolsa?</label>
                         </div>
+                        <button ><a href="javascript:limpiar('hg25_obtiene_agua',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -212,9 +227,6 @@
                             <th rowspan="2">N&uacute;mero de orden de la persona</th>
                             <th colspan="2">Nombres Completos</th>
                             <th colspan="2">Apellidos Completos</th>
-                            <th rowspan="2">Edad</th>
-                            <th rowspan="2">Tipo Documento Identidad</th>
-                            <th rowspan="2">N&uacute;mero Del Documento</th>
                         </tr>
                         <tr colspan="2">
                             <td>Primer Nombre</td>
@@ -242,31 +254,6 @@
                                 <td>
                                     <input style="width: 120px;" type="text" name="hg27_segundo_apellido_<?php echo $i; ?>" id="hg27_segundo_apellido_<?php echo $i; ?>" value="<?php echo $respuestasPersonas[$kk]["RA5_2APELLIDO"]; ?>">
                                 </td>
-                                <td>
-                                    <input style="width: 50px;" type="number" name="hg27_edad_<?php echo $i; ?>" max="999" id="hg27_edad_<?php echo $i; ?>" value="<?php echo $respuestasPersonas[$kk]["P_EDAD"]; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
-                                </td>
-                                <td>
-                                  <div class="doc-group">
-                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="1" <?php if( $respuestasPersonas[$kk]["PA_TIPO_DOC"]==1 ) { ?>checked="checked"<?php } ?>>
-                                    <label for="1">Registro civil de nacimiento</label>
-                                    </div>
-                                    <div class="doc-group">
-                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="2" <?php if( $respuestasPersonas[$kk]["PA_TIPO_DOC"]==2 ) { ?>checked="checked"<?php } ?>>
-                                    <label for="2">Tarjeta de identidad</label>
-                                    </div>
-                                    <div class="doc-group">
-                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="3" <?php if( $respuestasPersonas[$kk]["PA_TIPO_DOC"]==3 ) { ?>checked="checked"<?php } ?>>
-                                    <label for="3">C&eacute;dula de ciudadan&iacute;a</label>
-                                    </div>
-                                    <div class="doc-group">
-                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="4" <?php if( $respuestasPersonas[$kk]["PA_TIPO_DOC"]==4 ) { ?>checked="checked"<?php } ?>>
-                                    <label for="4">C&eacute;dula de extranjer&iacute;a</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <input type="number" name="hg27_documento_<?php echo $i; ?>" id="hg27_documento_<?php echo $i; ?>" value="<?php echo $respuestasPersonas[$kk]["PA1_NRO_DOC"]; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
-                                </td>
-
                             </tr>
                             <?php
                         }

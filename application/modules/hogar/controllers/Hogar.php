@@ -1054,7 +1054,8 @@ class Hogar extends MX_Controller {
             $consultaHogares = $this->mvivi->consultarTotalHogares($id_vivienda);
             $consultaHogaresInsertados = $this->mvivi->consultarHogaresInsertados($id_vivienda);
             
-            $total_hogares = $consultaHogares[0]["V_TOT_HOG"];
+            //$total_hogares = $consultaHogares[0]["V_TOT_HOG"];
+            $total_hogares = 1;
             $total_hogares_insertados = $consultaHogaresInsertados[0]["TOTAL"];
 
             if($total_hogares>$total_hogares_insertados){

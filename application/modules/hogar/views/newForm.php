@@ -1,3 +1,16 @@
+<script>
+function limpiar(cual, accion){
+// Action: 0=Deseleccionar todos 1=Seleccionar todos -1=Invertir seleccion
+    var f = document.frmUbicacionN
+    for (var i=0; i<f.elements.length; i++){
+        var obj = f.elements[i]
+        var name = obj.name
+        if (name==cual){
+            obj.checked = ((accion==1)? true : ((accion==0)? false : !obj.checked) );
+        }
+    }
+}
+</script>
 <div class="row">
     <div id="divForm" class="col-xs-12 col-sm-12 col-md-12">
         <form id="frmUbicacionN" name="frmUbicacionN" role="form" method="post" action="<?php echo base_url('hogar/guardarHogar') ?>">
@@ -15,7 +28,7 @@
                         <label>N&uacute;mero de orden</label>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">                       
-                        <input type="number" name="hg21_numero_orden" id="hg21_numero_orden" value="<?php echo $total_hogares_insertados ?>" readonly>
+                        <input type="number" name="hg21_numero_orden" id="hg21_numero_orden"  >
                     </div>   
                     <div class="col-xs-1 col-sm-1 col-md-1"> 
                     <label>De</label>
@@ -83,6 +96,7 @@
                             <input type="radio" name="hg24_prepara_alimentos" value="6">
                             <label for="6">No preparan alimentos en la vivienda?</label>
                         </div>
+                        <button ><a href="javascript:limpiar('hg24_prepara_alimentos',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -135,6 +149,7 @@
                             <input type="radio" name="hg25_obtiene_agua" value="11">
                             <label for="11">Agua embotellada o en bolsa?</label>
                         </div>
+                        <button ><a href="javascript:limpiar('hg25_obtiene_agua',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -157,16 +172,18 @@
                     <table border="2">
                         <tr>
                             <td rowspan="2">N&uacute;mero de orden</td>
-                            <td colspan="2">Sexo</td>
+                            <td colspan="3">Sexo</td>
                             <td rowspan="2">Edad al morir (para menores de 1 a&ntilde;o escriba 0)</td>
-                            <td colspan="3">¿Se expidi&oacute; certificado de defunci&oacute;n?</td>
+                            <td colspan="4">¿Se expidi&oacute; certificado de defunci&oacute;n?</td>
                         </tr>
                         <tr colspan="2">
                             <td>Hombre</td>
-                            <td>Mujer</td>                            
+                            <td>Mujer</td>
+                            <td>Limpiar</td>                            
                             <td>S&iacute;</td>
                             <td>No</td>
                             <td>No sabe</td>
+                            <td>limpiar</td>
                         </tr>
                         <?php
                         for($i=1;$i<=15;$i++){
@@ -182,6 +199,9 @@
                                     <input type="radio" name="hg26_sexo_<?php echo $i; ?>" value="2">
                                 </td>
                                 <td>
+                                    <button><a href="javascript:limpiar('hg26_sexo_<?php echo $i; ?>',0)">limpiar</a></button>
+                                </td>     
+                                <td>
                                     <input type="number" name="hg26_edad_<?php echo $i; ?>" id="hg26_edad" max="999">
                                 </td> 
                                 <td>
@@ -192,7 +212,10 @@
                                 </td>       
                                 <td>
                                     <input type="radio" name="hg26_certificado_defuncion_<?php echo $i; ?>" value="3">
-                                </td>       
+                                </td>  
+                                <td>
+                                    <button ><a href="javascript:limpiar('hg26_certificado_defuncion_<?php echo $i; ?>',0)">limpiar</a></button>
+                                </td>     
                             </tr>
                             <?php
                         }
@@ -211,9 +234,6 @@
                             <th rowspan="2">N&uacute;mero de orden de la persona</th>
                             <th colspan="2">Nombres Completos</th>
                             <th colspan="2">Apellidos Completos</th>
-                            <th rowspan="2">Edad</th>
-                            <th rowspan="2">Tipo Documento Identidad</th>
-                            <th rowspan="2">N&uacute;mero Del Documento</th>
                         </tr>
                         <tr colspan="2">
                             <td>Primer Nombre</td>
@@ -240,31 +260,6 @@
                                 <td>
                                     <input style="width: 120px;" type="text" name="hg27_segundo_apellido_<?php echo $i; ?>" id="hg27_segundo_apellido_<?php echo $i; ?>">
                                 </td>
-                                <td>
-                                    <input style="width: 50px;" type="number" name="hg27_edad_<?php echo $i; ?>" max="999" id="hg27_edad_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
-                                </td>
-                                <td>
-                                	<div class="doc-group">
-	                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="1">
-	                                    <label for="1">Registro civil de nacimiento</label>
-	                                </div>
-	                                <div class="doc-group">
-	                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="2">
-	                                    <label for="2">Tarjeta de identidad</label>
-	                                </div>
-	                                <div class="doc-group">
-	                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="3">
-	                                    <label for="3">C&eacute;dula de ciudadan&iacute;a</label>
-	                                </div>
-	                                <div class="doc-group">
-	                                    <input type="radio" name="hg27_tipoD_<?php echo $i; ?>" value="4">
-	                                    <label for="4">C&eacute;dula de extranjer&iacute;a</label>
-	                                </div>
-                                </td>
-                                <td>
-                                    <input type="number" name="hg27_documento_<?php echo $i; ?>" id="hg27_documento_<?php echo $i; ?>" <?php if( $i==1 ) { ?>required="required"<?php } ?>>
-                                </td>
-
                             </tr>
                             <?php
                         }

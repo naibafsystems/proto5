@@ -1,3 +1,16 @@
+<script>
+function limpiar(cual, accion){
+// Action: 0=Deseleccionar todos 1=Seleccionar todos -1=Invertir seleccion
+    var f = document.frmUbicacionN
+    for (var i=0; i<f.elements.length; i++){
+        var obj = f.elements[i]
+        var name = obj.name
+        if (name==cual){
+            obj.checked = ((accion==1)? true : ((accion==0)? false : !obj.checked) );
+        }
+    }
+}
+</script>
 <div class="row">
     <div id="divForm" class="col-xs-12 col-sm-12 col-md-12">
         <form id="frmUbicacionN" name="frmUbicacionN" role="form" method="post" action="<?php echo base_url('personas/guardarPersona') ?>">
@@ -43,6 +56,7 @@
                             <input type="radio" name="p32_sexo" value="2" <?php if( $respuestas[0]["P_SEXO"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">Mujer</label>
                         </div>
+                        <button ><a href="javascript:limpiar('p32_sexo',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -71,7 +85,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p33_sabe_fecha" value="2" <?php if( $respuestas[0]["PA_SABE_FECHA"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No sabe</label>
-                        </div>                        
+                        </div>
+                        <button ><a href="javascript:limpiar('p33_sabe_fecha',0)">limpiar</a></button>                        
                     </fieldset>
                 </div>
             </div>
@@ -98,7 +113,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p35_tipo_documento" value="3" <?php if( $respuestas[0]["PA_TIPO_DOC"]==3 ) { ?>checked="checked"<?php } ?>>
-                            <label for="3">Tarjeta de identidad</label>
+                            <label for="3">C&eacute;dula de ciudadan&iacute;a</label>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p35_tipo_documento" value="4" <?php if( $respuestas[0]["PA_TIPO_DOC"]==4 ) { ?>checked="checked"<?php } ?>>
@@ -125,7 +140,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p35_tipo_documento" value="7" <?php if( $respuestas[0]["PA_TIPO_DOC"]==7 ) { ?>checked="checked"<?php } ?>>
                             <label for="7">No responde</label>
-                        </div>                        
+                        </div>
+                        <button ><a href="javascript:limpiar('p35_tipo_documento',0)">limpiar</a></button>                        
                     </fieldset>
                 </div>
             </div>
@@ -196,7 +212,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p36_parentesco_jefe" value="16" <?php if( $respuestas[0]["P_PARENTESCO"]==16 ) { ?>checked="checked"<?php } ?>>
                             <label for="16">No pariente</label>
-                        </div>                        
+                        </div>     
+                        <button ><a href="javascript:limpiar('p36_parentesco_jefe',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -297,7 +314,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <input type="radio" name="p37_reconoce_como" value="6" <?php if( $respuestas[0]["PA1_GRP_ETNIC"]==6 ) { ?>checked="checked"<?php } ?>>
                             <label for="6">Ning&uacute;n grupo &eacute;tnico</label><h6>Contin&uacute;e con la pregunta 39</h6>
-                        </div>                        
+                        </div> 
+                        <button ><a href="javascript:limpiar('p37_reconoce_como',0)">limpiar</a></button>                       
                     </fieldset>
                 </div>
             </div>
@@ -312,7 +330,8 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p38_lengua_nativa" value="2" <?php if( $respuestas[0]["PA_HABLA_LENG"]==2 ) { ?>checked="checked"<?php } ?>>
-                            <label for="2">No</label>
+                            <label for="2">No</label><br>
+                            <button ><a href="javascript:limpiar('p38_lengua_nativa',0)">limpiar</a></button>
                             <div class="form-group">
 	                            <fieldset>
 	                            <div class="col-xs-1 col-sm-1 col-md-1">
@@ -332,6 +351,7 @@
 	                                <input type="radio" name="p38_entiende" value="2" <?php if( $respuestas[0]["PA1_ENTIENDE"]==2 ) { ?>checked="checked"<?php } ?>>
 	                                <label for="2">No</label>
 	                            </div>
+                                <button ><a href="javascript:limpiar('p38_entiende',0)">limpiar</a></button>
 	                            </fieldset>
 	                        </div>
                         </div>                      
@@ -358,6 +378,7 @@
                             <input type="radio" name="p38-1_habla_lengua_nativa" value="2" <?php if( $respuestas[0]["PB_OTRAS_LENG"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>                      
+                        <button ><a href="javascript:limpiar('p38-1_habla_lengua_nativa',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -415,7 +436,8 @@
                                     <input type="number" name="p39-1_llego_colombia" id="p39-1_llego_colombia" max=2018 value="<?php echo $respuestas[0]["PA31_ANO_LLEGO"]; ?>">
                                 </div>                                                        
                             </fieldset>
-                        </div>                
+                        </div>  
+                        <button ><a href="javascript:limpiar('p39_donde_nacio',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -484,6 +506,8 @@
 	                                    <input type="radio" name="p40-1_vivia" value="3" <?php if( $respuestas[0]["PA21_CLASE_5ANOS"]==3 ) { ?>checked="checked"<?php } ?>>
 	                                    <label for="3">El rural disperso? (vereda, campo, resguardo, territorio colectivo</label>
 	                                    <h6>Contin&uacute;e con la pregunta 41</h6>
+                                        <br>
+                                        <button ><a href="javascript:limpiar('p40-1_vivia',0)">limpiar</a></button>
 	                                </div>
                                 </div>
                             </fieldset>
@@ -501,7 +525,8 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">                        
                                     <label>Nombre del pais</label>
                                     <input type="text" name="p40_nombre_pais" id="p40_nombre_pais">
-                                </div>
+                                </div><br>
+                                <button ><a href="javascript:limpiar('p40_hace5_anios',0)">limpiar</a></button>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <h4><b>40.2 ¿En qu&eacute; a&ntilde;o lleg&oacute; a Colombia?</b></h4>
                                     <input type="number" name="p40-2_llego_colombia" id="p40-2_llego_colombia" max=2018 value="<?php echo $respuestas[0]["PA31_ANO_LLEGA5"]; ?>">
@@ -576,6 +601,8 @@
 	                                    <input type="radio" name="p41-1_vivia" value="3" <?php if( $respuestas[0]["PA21_CLASE_1ANO"]==3 ) { ?>checked="checked"<?php } ?>>
 	                                    <label for="3">El rural disperso? (vereda, campo, resguardo, territorio colectivo</label>
 	                                    <h6>Contin&uacute;e con la pregunta 41</h6>
+                                        <br>
+                                        <button ><a href="javascript:limpiar('p41-1_vivia',0)">limpiar</a></button>
 	                                </div>
                                 </div>
                             </fieldset>
@@ -593,7 +620,8 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">                        
                                     <label>Nombre del pais</label>
                                     <input type="text" name="p41_nombre_pais" id="p41_nombre_pais">
-                                </div>                                                       
+                                </div>    
+                                <button ><a href="javascript:limpiar('p41_nombre_pais',0)">limpiar</a></button>
                             </fieldset>
                         </div>          
                     </fieldset>
@@ -612,6 +640,7 @@
                             <label for="2">No</label>
                             <h6>Contin&uacute;e con la pregunta 44</h6>
                         </div>
+                        <button ><a href="javascript:limpiar('p42_enfermedad',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -663,7 +692,8 @@
 				                                </div>
 				                                <div class="col-xs-8 col-sm-8 col-md-8">   
 				                              		<input type="radio" name="p43-2_calidad_servicio" value="4" <?php if( $respuestas[0]["PA1_CALIDAD_SERV"]==4 ) { ?>checked="checked"<?php } ?>>
-		                            				<label for="4">Muy Malo</label>                     
+		                            				<label for="4">Muy Malo</label> 
+                                                    <button ><a href="javascript:limpiar('p43-2_calidad_servicio',0)">limpiar</a></button>                    
 				                                </div>	
 		                            		</fieldset>
 		                            	</div>
@@ -673,6 +703,7 @@
 	                                <div class="col-xs-10 col-sm-10 col-md-10">   
 	                                	<input type="radio" name="p43-1_atendieron" value="2" <?php if( $respuestas[0]["PA_LO_ATENDIERON"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            		<label for="2">No</label>                     
+                                        <button ><a href="javascript:limpiar('p43-1_atendieron',0)">limpiar</a></button>
 	                                </div>
 	                            </fieldset>
                             </div>
@@ -709,6 +740,7 @@
                             <input type="radio" name="p43_tratar_enfermedad" value="9" <?php if( $respuestas[0]["P_QUEHIZO_PPAL"]==9 ) { ?>checked="checked"<?php } ?>>
                             <label for="9">No hizo nada</label>
                         </div>
+                        <button ><a href="javascript:limpiar('p43_tratar_enfermedad',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -818,6 +850,7 @@
                             <h6>- Si la persona es menor de 5 a&ntilde;os, contin&uacute;e con la pregunta 48</h6>
 							<h6>- Si la persona tiene 5 a&ntilde;os o m&aacute;s, contin&uacute;e con la pregunta 49</h6>
                         </div>
+                        <button ><a href="javascript:limpiar('p44_tiene_dificultades',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -825,7 +858,7 @@
                 <div class="form-group">
                     <h4><b>45. De las dificultades anteriores, ¿cu&aacute;l es la que m&aacute;s afecta el desempe&ntilde;o diario de . . . ?</b></h4>
                     <div class="col-xs-6 col-sm-6 col-md-6">
-                        <input type="number" name="p45_mas_dificultad" id="p45_mas_dificultad" max=9 value="<?php echo $respuestas[0]["P_LIM_PPAL"]; ?>" readonly>
+                        <input type="number" name="p45_mas_dificultad" id="p45_mas_dificultad" min="0" max=9 value="<?php echo $respuestas[0]["P_LIM_PPAL"]; ?>">
                     </div>
                 </div>
             </div>
@@ -868,7 +901,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p46_ocasionada" value="9" <?php if( $respuestas[0]["P_CAUSA_LIM"]==9 ) { ?>checked="checked"<?php } ?>>
                             <label for="9">No sabe</label>
-                        </div>                        
+                        </div> 
+                        <button ><a href="javascript:limpiar('p46_ocasionada',0)">limpiar</a></button>                       
                     </fieldset>
                 </div>
             </div>
@@ -887,6 +921,7 @@
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
 	                            <input type="radio" name="p47-1_utiliza" value="2" <?php if( $respuestas[0]["PA_AYUDA_TEC"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            <label for="2">No</label>
+                                <button ><a href="javascript:limpiar('p47-1_utiliza',0)">limpiar</a></button>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -902,6 +937,7 @@
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
 	                            <input type="radio" name="p47-2_utiliza" value="2" <?php if( $respuestas[0]["PB_AYUDA_PERS"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            <label for="2">No</label>
+                                <button ><a href="javascript:limpiar('p47-2_utiliza',0)">limpiar</a></button>
 	                        </div>
 	                    </div> 
 	                    <div class="form-group">
@@ -917,6 +953,7 @@
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
 	                            <input type="radio" name="p47-3_utiliza" value="2" <?php if( $respuestas[0]["PC_AYUDA_MED"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            <label for="2">No</label>
+                                <button ><a href="javascript:limpiar('p47-3_utiliza',0)">limpiar</a></button>
 	                        </div>
 	                    </div>  
 	                    <div class="form-group">
@@ -932,6 +969,7 @@
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
 	                            <input type="radio" name="p47-4_utiliza" value="2" <?php if( $respuestas[0]["PD_AYUDA_ANCES"]==2 ) { ?>checked="checked"<?php } ?>>
 	                            <label for="2">No</label>
+                                <button ><a href="javascript:limpiar('p47-4_utiliza',0)">limpiar</a></button>
 	                        </div>
 	                    </div>                                             
                     </fieldset>
@@ -974,6 +1012,7 @@
                             <input type="radio" name="p48_permanece" value="7" <?php if( $respuestas[0]["P_CUIDA"]==7 ) { ?>checked="checked"<?php } ?>>
                             <label for="7">En la vivienda, solo?</label>
                         </div>
+                        <button ><a href="javascript:limpiar('p48_permanece',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -994,6 +1033,7 @@
                             <input type="radio" name="p49_sabe" value="2" <?php if( $respuestas[0]["P_ALFABETA"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>
+                        <button ><a href="javascript:limpiar('p49_sabe',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -1009,6 +1049,7 @@
                             <input type="radio" name="p50_asiste" value="2" <?php if( $respuestas[0]["PA_ASISTENCIA"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
                         </div>
+                        <button ><a href="javascript:limpiar('p50_asiste',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -1021,16 +1062,16 @@
 	                        	<h4>1.Preescolar</h4>
 	                        </div>
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
-	                            <input type="radio" name="p51_nivel" value="prejardin" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="prejardin" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="prejardin">Prejardin</label>
+	                            <input type="radio" name="p51_nivel" value="1" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="1" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="1">Prejardin</label>
 	                        </div>
 	                        <div class="col-xs-2 col-sm-2 col-md-2">                        
-	                            <input type="radio" name="p51_nivel" value="jardin" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="jardin" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="jardin">Jardin</label>
+	                            <input type="radio" name="p51_nivel" value="2" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="2" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="2">Jardin</label>
 	                        </div>
 	                        <div class="col-xs-3 col-sm-3 col-md-3">                        
-	                            <input type="radio" name="p51_nivel" value="Transicion" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="transicion" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="transicion">Transicion</label>
+	                            <input type="radio" name="p51_nivel" value="3" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="3" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="3">Transicion</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1040,24 +1081,24 @@
 	                        	<h4>2.B&aacute;sica primaria</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="1" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="1" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="1">1</label>
-	                        </div>
-	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="2" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="2" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="2">2</label>
-	                        </div>
-	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="3" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="3" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="3">3</label>
-	                        </div>
-	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
 	                            <input type="radio" name="p51_nivel" value="4" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="4" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="4">4</label>
+	                            <label for="4">1</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
 	                            <input type="radio" name="p51_nivel" value="5" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="5" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="5">5</label>
+	                            <label for="5">2</label>
+	                        </div>
+	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
+	                            <input type="radio" name="p51_nivel" value="6" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="6" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="6">3</label>
+	                        </div>
+	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
+	                            <input type="radio" name="p51_nivel" value="7" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="7" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="7">4</label>
+	                        </div>
+	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
+	                            <input type="radio" name="p51_nivel" value="8" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="8" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="8">5</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1067,20 +1108,20 @@
 	                        	<h4>3.B&aacute;sica secundaria (Bachillerato b&aacute;sico)</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="6" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="6" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="6">6</label>
-	                        </div>
-	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="7" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="7" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="7">7</label>
-	                        </div>
-	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="8" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="8" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="8">8</label>
-	                        </div>
-	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
 	                            <input type="radio" name="p51_nivel" value="9" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="9" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="9">9</label>
+	                            <label for="9">6</label>
+	                        </div>
+	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
+	                            <input type="radio" name="p51_nivel" value="10" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="10" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="10">7</label>
+	                        </div>
+	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
+	                            <input type="radio" name="p51_nivel" value="11" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="11" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="11">8</label>
+	                        </div>
+	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
+	                            <input type="radio" name="p51_nivel" value="12" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="12" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="12">9</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1090,12 +1131,12 @@
 	                        	<h4>4.Media acad&eacute;mica o cl&aacute;sica (Bachillerato cl&aacute;sico)</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="10" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="10" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="10">10</label>
+	                            <input type="radio" name="p51_nivel" value="13" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="13" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="13">10</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="11" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="11" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="11">11</label>
+	                            <input type="radio" name="p51_nivel" value="14" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="14" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="14">11</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1105,16 +1146,39 @@
 	                        	<h4>5.Media t&eacute;cnica (Bachillerato t&eacute;cnico)</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="10" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="10" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="10">10</label>
+	                            <input type="radio" name="p51_nivel" value="15" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="15" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="15">10</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="11" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="11" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="11">11</label>
+	                            <input type="radio" name="p51_nivel" value="16" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="16" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="16">11</label>
 	                        </div>
 	                    </div>
+                        <div class="form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12">                        
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4">                        
+                                <h4>6.Normalista</h4>
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1">                        
+                                <input type="radio" name="p51_nivel" value="17" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="17" ) { ?>checked="checked"<?php } ?>>
+                                <label for="17">10</label>
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1">                        
+                                <input type="radio" name="p51_nivel" value="18" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="18" ) { ?>checked="checked"<?php } ?>>
+                                <label for="18">11</label>
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1">                        
+                                <input type="radio" name="p51_nivel" value="19" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="19" ) { ?>checked="checked"<?php } ?>>
+                                <label for="19">12</label>
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1">                        
+                                <input type="radio" name="p51_nivel" value="20" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="20" ) { ?>checked="checked"<?php } ?>>
+                                <label for="20">13</label>
+                            </div>
+                        </div>
 	                    <div class="col-xs-12 col-sm-12 col-md-12">                        
-	                    	<h3><b>SUPERIOR</b></h3>
+	                    	<h3><b>SUPERIOR</b></h3>  
 	                    </div>
 	                    <div class="form-group">
 	                    	<div class="col-xs-12 col-sm-12 col-md-12">                        
@@ -1123,16 +1187,16 @@
 	                        	<h4>7.T&eacute;cnica Profesional</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="1" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="1" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="1">1</label>
+	                            <input type="radio" name="p51_nivel" value="21" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="21" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="21">1</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="2" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="2" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="2">2</label>
+	                            <input type="radio" name="p51_nivel" value="22" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="22" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="22">2</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="3" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="3" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="3">3</label>
+	                            <input type="radio" name="p51_nivel" value="23" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="23" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="23">3</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1142,16 +1206,16 @@
 	                        	<h4>8.Tecnol&oacute;gica</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="1" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="1" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="1">1</label>
+	                            <input type="radio" name="p51_nivel" value="24" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="24" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="24">1</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="2" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="2" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="2">2</label>
+	                            <input type="radio" name="p51_nivel" value="25" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="25" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="25">2</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="3" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="3" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="3">3</label>
+	                            <input type="radio" name="p51_nivel" value="26" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="26" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="26">3</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1161,28 +1225,28 @@
 	                        	<h4>9.Universitario</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="1" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="1" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="1">1</label>
+	                            <input type="radio" name="p51_nivel" value="27" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="27" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="27">1</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="2" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="2" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="2">2</label>
+	                            <input type="radio" name="p51_nivel" value="28" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="28" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="28">2</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="3" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="3" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="3">3</label>
+	                            <input type="radio" name="p51_nivel" value="29" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="29" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="29">3</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="4" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="4" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="4">4</label>
+	                            <input type="radio" name="p51_nivel" value="30" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="30" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="30">4</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="5" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="5" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="5">5</label>
+	                            <input type="radio" name="p51_nivel" value="31" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="31" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="31">5</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="6" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="6" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="6">6</label>
+	                            <input type="radio" name="p51_nivel" value="32" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="32" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="32">6</label>
 	                        </div>
 	                    </div>
 	                    <div class="col-xs-12 col-sm-12 col-md-12">                        
@@ -1195,12 +1259,12 @@
 	                        	<h4>10.Especializaci&oacute;n</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="1" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="1" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="1">1</label>
+	                            <input type="radio" name="p51_nivel" value="33" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="33" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="33">1</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="2" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="2" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="2">2</label>
+	                            <input type="radio" name="p51_nivel" value="34" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="34" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="34">2</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1210,16 +1274,16 @@
 	                        	<h4>11.Maestr&iacute;a</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="1" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="1" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="1">1</label>
+	                            <input type="radio" name="p51_nivel" value="35" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="35" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="35">1</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="2" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="2" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="2">2</label>
+	                            <input type="radio" name="p51_nivel" value="36" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="36" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="36">2</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="3" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="3" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="3">3</label>
+	                            <input type="radio" name="p51_nivel" value="37" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="37" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="37">3</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1229,28 +1293,28 @@
 	                        	<h4>12.Doctorado</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="1" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="1" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="1">1</label>
+	                            <input type="radio" name="p51_nivel" value="38" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="38" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="38">1</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="2" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="2" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="2">2</label>
+	                            <input type="radio" name="p51_nivel" value="39" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="39" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="39">2</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="3" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="3" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="3">3</label>
+	                            <input type="radio" name="p51_nivel" value="40" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="40" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="40">3</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="4" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="4" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="4">4</label>
+	                            <input type="radio" name="p51_nivel" value="41" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="41" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="41">4</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="5" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="5" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="5">5</label>
+	                            <input type="radio" name="p51_nivel" value="42" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="42" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="42">5</label>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="6" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="6" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="6">6</label>
+	                            <input type="radio" name="p51_nivel" value="43" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="43" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="43">6</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -1260,10 +1324,11 @@
 	                        	<h4>13.Ninguno</h4>
 	                        </div>
 	                        <div class="col-xs-1 col-sm-1 col-md-1">                        
-	                            <input type="radio" name="p51_nivel" value="0" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="0" ) { ?>checked="checked"<?php } ?>>
-	                            <label for="0">0</label>
+	                            <input type="radio" name="p51_nivel" value="44" <?php if( $respuestas[0]["P_NIVEL_ANOS"]=="44" ) { ?>checked="checked"<?php } ?>>
+	                            <label for="44">0</label>
 	                        </div>
 	                    </div>
+                        <button ><a href="javascript:limpiar('p51_nivel',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -1312,6 +1377,7 @@
                             <input type="radio" name="p52_semana" value="9" <?php if( $respuestas[0]["P_TRABAJO"]==9 ) { ?>checked="checked"<?php } ?>>
                             <label for="9">Estuvo en otra situaci&oacute;n?</label>
                         </div>
+                        <button ><a href="javascript:limpiar('p52_semana',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -1347,6 +1413,7 @@
                             <input type="radio" name="p53_estado_civil" value="7" <?php if( $respuestas[0]["P_EST_CIVIL"]==7 ) { ?>checked="checked"<?php } ?>>
                             <label for="7">Soltero(a)?</label>
                         </div>
+                        <button ><a href="javascript:limpiar('p53_estado_civil',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -1382,7 +1449,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p54_hijos" value="2" <?php if( $respuestas[0]["PA_HNV"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No</label>
-                        </div>                        
+                        </div> 
+                        <button ><a href="javascript:limpiar('p54_hijos',0)">limpiar</a></button>
                     </fieldset>
                 </div>
             </div>
@@ -1413,7 +1481,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p55_hijos_vivos" value="2" <?php if( $respuestas[0]["PA_HNVS"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No sabe</label>
-                        </div>                        
+                        </div> 
+                        <button ><a href="javascript:limpiar('p55_hijos_vivos',0)">limpiar</a></button>                      
                     </fieldset>
                 </div>
             </div>
@@ -1444,7 +1513,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p56_hijos_fuera" value="2" <?php if( $respuestas[0]["PA_HFC"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No sabe</label>
-                        </div>                        
+                        </div> 
+                        <button ><a href="javascript:limpiar('p56_hijos_fuera',0)">limpiar</a></button>                       
                     </fieldset>
                 </div>
             </div>
@@ -1523,6 +1593,7 @@
 	                            		<input type="radio" name="p57_mes" value="12" <?php if( $respuestas[0]["PA1_MES_UHNV"]==12 ) { ?>checked="checked"<?php } ?>>
 	                            		<label for="12">Diciembre</label>
 	                            	</div>
+                                    <button ><a href="javascript:limpiar('p57_mes',0)">limpiar</a></button>
 	                            	
 	                            	<div class="col-xs-1 col-sm-1 col-md-1">  
 	                            	</div>
@@ -1536,7 +1607,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
                             <input type="radio" name="p57_sabe_mes" value="2" <?php if( $respuestas[0]["PA_UHNV"]==2 ) { ?>checked="checked"<?php } ?>>
                             <label for="2">No sabe</label>
-                        </div>                        
+                        </div>     
+                        <button ><a href="javascript:limpiar('p57_sabe_mes',0)">limpiar</a></button>                   
                     </fieldset>
                 </div>
             </div>

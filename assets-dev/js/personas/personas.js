@@ -76,11 +76,11 @@ $(function () {
             dia: {required: true, min:1, max:31},
             mes: {required: true, min:1, max:12},
             anio: {required: true, min:2018, max:2018},
-            hora: {required: true, min:1, max:24},
-            minutos: {required: true, min:00, max:59},
+            
+            
             resultado_entrevista: {required: true},
-            cod_censita: {required: true},
-            cod_supervisor: {required: true},
+            
+            
             nume_certificado: {maxlength:9}
         },
         messages: {
@@ -88,11 +88,11 @@ $(function () {
             dia: {required: 'Error: El campo día es obligatorio.'},
             mes: {required: 'Error: El campo mes es obligatorio.'},
             anio: {required: 'Error: El campo año es obligatorio.'},
-            hora: {required: 'Error:  El campo hora es obligatorio.'},
-            minutos: {required: 'Error:  El campo minutos es obligatorio.'},
+            
+            
             resultado_entrevista: {required: 'Error:  Seleccione el resultado de la entrevista.'},
-            cod_censita: {required: 'Error:  El campo código censista es obligatorio.'},
-            cod_supervisor: {required: 'Error:  El campo código supervisor es obligatorio.'}            
+            
+            
         },
         /*acc*/
         onfocusout: function (element) {   
