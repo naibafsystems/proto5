@@ -49,7 +49,7 @@ function limpiar(cual, accion){
                     <h4><b>32. ... Es hombre o mujer</b></h4>
                     <fieldset>
                         <div class="col-xs-12 col-sm-12 col-md-12">                        
-                            <input type="radio" name="p32_sexo" value="1" <?php if( $respuestas[0]["P_SEXO"]==1 ) { ?>checked="checked"<?php } ?>>
+                            <input type="radio" name="p32_sexo" value="1" <?php if( $respuestas[0]["P_SEXO"]==1 ) { ?>checked="checked"<?php } ?> required>
                             <label for="1">Hombre</label>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">                        

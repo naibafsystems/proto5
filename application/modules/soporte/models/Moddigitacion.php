@@ -24,11 +24,11 @@ class Moddigitacion extends My_model {
             'port'   => $this->config->item('redis_port'),
             'password' => $this->config->item('redis_password')
         ]);*/
-        $this->redis = new Redis();
-        $this->redis->connect($this->config->item('redis_host'), $this->config->item('redis_port'));
+        //$this->redis = new Redis();
+        /*$this->redis->connect($this->config->item('redis_host'), $this->config->item('redis_port'));
         $this->redis->auth($this->config->item('redis_password'));
         $this->redis->select($this->config->item('redis_database'));
-        //echo "Server is running: ".$this->redis->ping();
+        //echo "Server is running: ".$this->redis->ping();*/
     }
 
     public function getMsgError() {
@@ -110,7 +110,7 @@ class Moddigitacion extends My_model {
             }
 
             // $arrDatosVivienda['UID_ORIGEN'] = 3; // Web
-            $arrDatosVivienda['UID_ORIGEN'] = $this->config->item('UID_ORIGEN_DMC_WEB'); // 99 se modifica a 17; // Web por digitacion
+            $arrDatosVivienda['UID_ORIGEN'] = 18;//$this->config->item('UID_ORIGEN_DMC_WEB'); // 99 se modifica a 17; // Web por digitacion
             $arrDatosVivienda['COD_ENCUESTAS'] = $idEncuesta;
             $arrDatosVivienda['ID_VIVIENDA'] = $idVivienda;
             $arrDatosVivienda['U_UC'] = '1';

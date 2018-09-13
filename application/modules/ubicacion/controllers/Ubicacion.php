@@ -1301,7 +1301,7 @@ class Ubicacion extends MX_Controller {
 //        echo $codiEncuesta."---".$codiVivienda."++".$codiHogar;
 
         $this->data['view'] = 'newForm';
-        $this->load->view('layout', $this->data);
+        $this->load->view('layoutNew', $this->data);
     }
 
     public function guardarUbicacion() {
@@ -1401,6 +1401,18 @@ class Ubicacion extends MX_Controller {
 
         $resultadoUbVv = $this->mvivi->actualizarDatosUbVv($resp);
         if($resultadoUbVv){
+
+            if($resp["vv_ocupacion_vivienda"]==2 || $resp["vv_ocupacion_vivienda"]==3 || $resp["vv_ocupacion_vivienda"]==4 || $resp["ub_uso_unidad"]==3 || $resp["ub_mas_hogares"]==3 || $resp["ub12_1_mas_hogares"]==1 || $resp["ub12_1_mas_hogares"]==2){
+
+                $this->load->model('encuesta/modencuesta', 'mencu');
+                $arrFechaFin = $this->mencu->consultaFechaFinFormulario($codiEncuesta);
+                $fecha_fin_formulario = $arrFechaFin[0]["FECHA_CERTI"];
+                //echo "esta es la fecha".$fecha_fin_formulario;exit;
+                if($fecha_fin_formulario==""){
+                    $insertFechaFinFormulario = $this->mencu->actualizarFechaFinFormulario($codiEncuesta);
+                }           
+            }
+            
             $arrFechaFin = $this->mvivi->consultaFechaInicio($codiEncuesta);
             $fecha_fin_vivienda = $arrFechaFin[0]["FECHA_FIN_VIVIENDA"];
             $fecha_fin_ubicacion = $arrFechaFin[0]["FECHA_FIN_UBICACION"];

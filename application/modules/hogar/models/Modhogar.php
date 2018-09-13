@@ -566,5 +566,28 @@ class Modhogar extends My_model {
         $this->db->close();
         return $data;
     }
+
+    public function reporte() {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT admusu.USUARIO, admusu.NOMBRES, admusu.APELLIDOS, viv.UI1_NROFOR AS numero_formulario, viv.U_DPTO AS depto_divipola, viv.U_MPIO AS municipio_divipola, viv.V_TOT_HOG as total_hogares, ctrl.FECHA_REGISTRO as fecha_inicio_digitacion, ctrl.FECHA_CERTI AS fecha_fin_digitacion, 
+            (SELECT count(*) FROM WCP_PERSONAS_HOGAR pshog WHERE viv.COD_ENCUESTAS=pshog.COD_ENCUESTAS) AS cantidad_personas,
+            (SELECT count(*) FROM WCP_PERSONAS_HOGAR pshog WHERE viv.COD_ENCUESTAS=pshog.COD_ENCUESTAS AND pshog.P_SEXO is not null) AS cantidad_personas_digitadas
+            FROM wcp_vivienda viv
+            INNER JOIN wcp_admin_usuarios admusu ON viv.USUARIO_INSERCION = admusu.ID_USUARIO
+            INNER JOIN wcp_admin_control ctrl ON viv.COD_ENCUESTAS=ctrl.COD_ENCUESTAS
+            WHERE ctrl.FECHA_REGISTRO BETWEEN TO_TIMESTAMP('30/08/2018','dd/mm/yyyy') AND SYSDATE ";
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
 }
 //EOC

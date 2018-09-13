@@ -210,5 +210,52 @@ class Inicio extends MX_Controller {
         
         $this->output->set_content_type('application/json', 'utf-8')->set_output(json_encode($response));
     }
+
+    public function reporte() {
+        error_reporting(E_ALL & ~E_NOTICE);
+        $this->load->model('vivienda/modvivienda', 'mvivi');
+        $this->load->model('hogar/modhogar', 'mhogar'); 
+
+       $this->data['respuestas'] = $this->mhogar->reporte();
+
+
+        if ($this->data['respuestas']!=""){
+            ini_set("display_errors",0);
+        
+        /*header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=reporte_hacienda.csv");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        */
+        $Name = 'reporte.csv';
+        $FileName = "./$Name";
+        
+        header('Expires: 0');
+        header('Cache-control: private');
+        header('Content-Type: application/x-octet-stream'); // Archivo de Excel
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Content-Description: File Transfer');
+        header('Last-Modified: '.date('D, d M Y H:i:s'));
+        header('Content-Disposition: attachment; filename="'.$Name.'"');
+        header("Content-Transfer-Encoding: binary");
+        /*
+        header('Content-Type: application/vnd.ms-excel'); //mime type
+        header('Content-Disposition: attachment;filename="reporte'.$reporte.'.xls"'); //tell browser what's the file name
+        header('Cache-Control: max-age=0');
+        */
+
+        $this->load->view("reporte", $this->data, FALSE);
+        }
+        else{
+            echo '<p><h4>No se encontraron resultados.</h4></p><br/>';
+        }
+
+
+        //var_dump($this->data['respuestas']);exit;
+        //$this->data['view'] = 'reporte';
+        //$this->load->view('layoutNew', $this->data);
+        
+    }
+
 }
 //EOC

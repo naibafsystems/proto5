@@ -29,13 +29,7 @@ $(function () {
             $('#progressbar').html(data.avance + ' COMPLETADO').css('width', data.avance);
             return true;
         },
-        error: function (jqXHR, textStatus, errorThrown) {
-            dialogo.setTitle('Consultar estado personas');
-            dialogo.setType(BootstrapDialog.TYPE_DANGER);
-            dialogo.setMessage(jqXHR.responseText);
-            dialogo.open();
-            return false;
-        },
+        
         timeout: 10000 // se define el timeout a 10 segundos
     });
 

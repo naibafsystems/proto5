@@ -99,6 +99,14 @@ if(!empty($msgErrorFD)) {
                         </div>
                     </div>
                 </div>
+                <?php if($this->session->userdata('usuario')=="luciano"){
+                                            
+                ?>
+                
+                    <button type="button" class="btn btn-primary"><a href="<?php echo base_url('inicio/reporte') ?>">Reporte</a></button>
+                <?php
+            }
+            ?>
 
                 <!-- <div>
 

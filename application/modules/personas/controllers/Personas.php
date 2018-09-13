@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+error_reporting(0);
 /**
  * Controlador para el modulo de personas
  * @author oagarzond
@@ -537,6 +537,8 @@ class Personas extends MX_Controller {
     
     
     public function resultadoEntrevista() {
+        $this->load->model('encuesta/modencuesta', 'mencu');
+
         $this->data["title"] = 'Resultado Entrevista';
         $this->data["view"] = 'resultado';
         $this->data["avance"] = '100%';
@@ -546,24 +548,37 @@ class Personas extends MX_Controller {
         </ol>';
 		
 		$this->data['arrJS'][] = base_url_js('personas/personas.js?n='.date('is'));
+
+        $this->data['codiEncuesta'] = $this->session->userdata('codiEncuesta');
+
+        $this->data['respuestas'] = $this->mencu->respuestasEntrevistas($this->data['codiEncuesta']);
         
         $this->load->view("layout", $this->data);
     }
 	
 	public function guardarEntrevista(){ 
+		//var_dump($_POST);exit;
+        $dia="";
+        $mes="";
+        $anio="";
+        $hora="";
+        $minutos="";
+		$numero_visita = $_POST['numero_visita'];
+		$dia = $_POST['dia'];
+		$mes = $_POST['mes'];
+		$anio = $_POST['anio'];
+		$hora = $_POST['hora'];
+		$minutos = $_POST['minutos'];
+		$resultado_entrevista = $_POST['resultado_entrevista'];
+		$cod_censita = $_POST['cod_censita'];
+		$cod_supervisor = $_POST['cod_supervisor'];
+		$nume_certificado = $_POST['nume_certificado'];
 		
-		$numero_visita = $this->input->post('numero_visita');
-		$dia = $this->input->post('dia');
-		$mes = $this->input->post('mes');
-		$anio = $this->input->post('anio');
-		$hora = $this->input->post('hora');
-		$minutos = $this->input->post('minutos');
-		$resultado_entrevista = $this->input->post('resultado_entrevista');
-		$cod_censita = $this->input->post('cod_censita');
-		$cod_supervisor = $this->input->post('cod_supervisor');
-		$nume_certificado = $this->input->post('nume_certificado');
-		
-		$date = new DateTime($anio.'-'.$mes.'-'.$dia.' '.$hora.':'.$minutos.':00');
+        if($dia!="" && $mes!="" && $anio!="" && $hora!="" && $minutos!=""){
+		      $date = new DateTime($anio.'-'.$mes.'-'.$dia.' '.$hora.':'.$minutos.':00');
+          }else{
+            $date = "";
+          }
 		
 		$this->load->model('encuesta/modencuesta', 'mencu');
        
@@ -578,7 +593,9 @@ class Personas extends MX_Controller {
 		}
         
         $this->data['nroVisita'] = $numero_visita;
-        $this->data['fechaFin'] = $date->format('Y-m-d H:i:s');
+        if($date!=""){
+            $this->data['fechaFin'] = $date->format('Y-m-d H:i:s');
+        }
         $this->data['resuEntrevista'] = $resultado_entrevista;
         $this->data['codCensista'] = $cod_censita;
         $this->data['codSupervisor'] = $cod_supervisor;
@@ -588,17 +605,36 @@ class Personas extends MX_Controller {
 		if($this->data['nume_certificado'] != '' ){
 			$this->mencu->actualizarNumeCertificadoResultado($this->data);
 		}
+
+        $visita_creada = $this->mencu->consultaVisita($this->data['codiEncuesta'],$numero_visita);
         
-         
-        if(!$this->mencu->guardarEntrevistaResultado($this->data)) {
-            $response['codiError'] = 1;
-			$response['mensaje'] = 'Error al guardar la información de la entrevista';
-        } else {
-			$response['codiError'] = 0;
-			$response['mensaje'] = 'Se guardo la información de la entrevista';
-		}
-		
-		$this->output->set_content_type('application/json', 'utf-8')->set_output(json_encode($response));
+        if(count($visita_creada)==0){
+           if(!$this->mencu->guardarEntrevistaResultado($this->data)) {
+                $response['codiError'] = 1;
+                $response['mensaje'] = 'Error al guardar la información de la entrevista';
+            } else {
+                    $arrFechaFin = $this->mencu->consultaFechaFinFormulario($this->data['codiEncuesta']);
+                    $fecha_fin_formulario = $arrFechaFin[0]["FECHA_CERTI"];
+                    //echo "esta es la fecha".$fecha_fin_formulario;exit;
+                    if($fecha_fin_formulario==""){
+                        $insertFechaFinFormulario = $this->mencu->actualizarFechaFinFormulario($this->data['codiEncuesta']);
+                    }           
+                    redirect(base_url('personas'));
+            }
+        }else{
+            if(!$this->mencu->actualizarEntrevistaResultado($this->data)) {
+                $response['codiError'] = 1;
+                $response['mensaje'] = 'Error al guardar la información de la entrevista';
+            } else {
+                    $arrFechaFin = $this->mencu->consultaFechaFinFormulario($this->data['codiEncuesta']);
+                    $fecha_fin_formulario = $arrFechaFin[0]["FECHA_CERTI"];
+                    //echo "esta es la fecha".$fecha_fin_formulario;exit;
+                    if($fecha_fin_formulario==""){
+                        $insertFechaFinFormulario = $this->mencu->actualizarFechaFinFormulario($this->data['codiEncuesta']);
+                    }           
+                    redirect(base_url('personas'));
+            }
+        }
 	}
 
     public function formNew($id_persona) {
@@ -631,13 +667,14 @@ class Personas extends MX_Controller {
         //var_dump($this->data['respuestas']);
         
         $this->data['view'] = 'newForm';
-        $this->load->view('layout', $this->data);
+        $this->load->view('layoutNew', $this->data);
         
     }
 
     public function guardarPersona() {
         //echo "INGRESO A GUARDAR";exit;
      //   error_reporting(0);
+        //var_dump($_POST);exit; 
         ini_set('max_execution_time', 13600);
         error_reporting(E_ALL & ~E_NOTICE);
         $this->load->model('vivienda/modvivienda', 'mvivi');

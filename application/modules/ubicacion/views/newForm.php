@@ -717,7 +717,7 @@ function limpiar(cual, accion){
                         <label for="1">Energ&iacute;a el&eacute;ctrica?</label>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">                        
-                        <input type="radio" name="vv19_energia_electrica" value="1" <?php if( $respuestas[0]["EVA_EE"]==1 ) { ?>checked="checked"<?php } ?>>
+                        <input type="radio" name="vv19_energia_electrica" value="1" <?php if( $respuestas[0]["VA_EE"]==1 ) { ?>checked="checked"<?php } ?>>
                         <label for="1">S&iacute;</label> 
                         <fieldset>
                             <div class="col-xs-1 col-sm-1 col-md-1">
@@ -729,7 +729,7 @@ function limpiar(cual, accion){
                         </fieldset>                          
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">                        
-                        <input type="radio" name="vv19_energia_electrica" value="2" <?php if( $respuestas[0]["EVA_EE"]==2 ) { ?>checked="checked"<?php } ?>>
+                        <input type="radio" name="vv19_energia_electrica" value="2" <?php if( $respuestas[0]["VA_EE"]==2 ) { ?>checked="checked"<?php } ?>>
                         <label for="2">No</label>                            
                          <a href="javascript:limpiar('vv19_energia_electrica',0)">limpiar</a>
                     </div>

@@ -934,7 +934,7 @@ class Hogar extends MX_Controller {
 
         
         $this->data['view'] = 'newForm';
-        $this->load->view('layout', $this->data);
+        $this->load->view('layoutNew', $this->data);
         
     }
 
@@ -968,7 +968,7 @@ class Hogar extends MX_Controller {
 
         
         $this->data['view'] = 'editH';
-        $this->load->view('layout', $this->data);
+        $this->load->view('layoutNew', $this->data);
         
     }
 

@@ -804,5 +804,92 @@ class Modencuesta extends My_model {
             return false;
         }
     }
+
+    public function consultaFechaFinFormulario($codiEncuesta) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_ADMIN_CONTROL
+                WHERE COD_ENCUESTAS =  " . $codiEncuesta;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+    public function actualizarFechaFinFormulario($codiEncuesta) {
+        
+        // PARTICIONAR LA PRIMERA
+        $datosInsert['FECHA_CERTI'] = "SYSDATE";
+        $arrWhere['COD_ENCUESTAS'] = $codiEncuesta;        
+
+        if (!$this->ejecutar_update($this->sufijoTabla . '_ADMIN_CONTROL', $datosInsert, $arrWhere)) {
+            throw new Exception("No se pudo actualizar correctamente la información de la vivienda. SQL: " . $this->get_sql(), 1);
+        }
+
+        return true;
+    }
+
+    public function consultaVisita($codiEncuesta,$numero_visita) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_RESULTADOS_ENTREVISTA
+                WHERE CC_NRO_VIS =  " . $numero_visita. " AND COD_ENCUESTAS =  " . $codiEncuesta ;
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
+
+    public function actualizarEntrevistaResultado($arrDatos) {
+        
+        $arrWhereRE['COD_ENCUESTAS'] = $arrDatos['codiEncuesta'];
+        $arrWhereRE['CC_NRO_VIS'] = $arrDatos['nroVisita'];
+        $arrDatosEntrevista['CC_NRO_VIS'] = $arrDatos['nroVisita'];
+        if($arrDatos['fechaFin']!=NULL){
+            $arrDatosEntrevista['CC_FECHA_FIN'] = "TO_DATE('".$arrDatos['fechaFin']."', 'yyyy/mm/dd hh24:mi:ss')";
+        }
+        $arrDatosEntrevista['CC_RES_ENC'] = $arrDatos['resuEntrevista'];
+        $arrDatosEntrevista['CC_COD_RECO'] = $arrDatos['codCensista'];
+        $arrDatosEntrevista['CC_COD_SUPE'] = $arrDatos['codSupervisor'];
+        
+        
+        if (!$this->ejecutar_update($this->sufijoTabla . '_RESULTADOS_ENTREVISTA', $arrDatosEntrevista, $arrWhereRE)) {
+            throw new Exception("No se pudo actualizar correctamente la información del resultado entrevista. SQL: " . $this->get_sql(), 1);
+        }
+        return true;
+    }
+
+    public function respuestasEntrevistas($codiEncuesta) {
+        $data = array();
+        $cond = '';
+        $i = 0;
+        
+        $sql = "SELECT *
+                FROM " . $this->sufijoTabla . "_RESULTADOS_ENTREVISTA RE
+                INNER JOIN  " . $this->sufijoTabla . "_HOGAR HG ON RE.COD_ENCUESTAS=HG.COD_ENCUESTAS 
+                WHERE RE.COD_ENCUESTAS =  " . $codiEncuesta. " ORDER BY ID_RESULTADOS_ENTREVISTA DESC ";
+        //echo $sql;exit;
+        $query = $this->db->query($sql);
+        while ($row = $query->unbuffered_row('array')) {
+            $data[$i] = $row;
+            $i++;
+        }
+        $this->db->close();
+        return $data;
+    }
 }
 //EOC

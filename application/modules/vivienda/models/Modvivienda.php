@@ -369,10 +369,10 @@ class Modvivienda extends My_model {
         $datosInsert['U_DPTO'] = $resp["ub_codigo_depto"];
         $datosInsert['U_MPIO'] = $resp["ub_codigo_mun"];
         $datosInsert['UA_CLASE'] = $resp["ub_clase"];
-        $datosInsert['UA2_CPOB'] = $resp["ub2_codigo_clase_centro_poblado"];
-        $datosInsert['UA1_LOCALIDAD'] = $resp["ub2_codigo_clase_localidad"];
+        $datosInsert['UA2_CPOB'] = $resp["ub_codigo_clase_centro_poblado"];
+        $datosInsert['UA1_LOCALIDAD'] = $resp["ub_codigo_clase_localidad"];
         $datosInsert['UVA1_TIPOTER'] = $resp["ub_territorio_etnico"];
-        //$datosInsert['UVA1_TIPOTER'] = $resp["ub_tipo_territorio_etnico"];
+        //$datosInsert['UVA1_TIPOTER'] = $resp["ub_tipo_territorio_etnico"]; 
         $datosInsert['UVA2_CODTER'] = $resp["ub_codigo_territorio_etnico"];
         $datosInsert['UVA_ESTA_AREAPROT'] = $resp["ub_area_protegida"];
         $datosInsert['UVA1_COD_AREAPROT'] = $resp["ub_codigo_area_protegida"];

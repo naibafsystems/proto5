@@ -60,4 +60,4 @@ if ($_SERVER['HTTP_HOST'] == 'cnpv4.dane.gov.co') {
 }
 $config['redis_dominios'] = '1,2,3,26,27,38,43,44,45,92,93,94,95,97,98,901,914';
 
-$config['UID_ORIGEN_DMC_WEB'] = 17;
+$config['UID_ORIGEN_DMC_WEB'] = 18;
