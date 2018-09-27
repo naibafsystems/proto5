@@ -91,7 +91,7 @@ class Digitacion extends MX_Controller {
             $data[$k]['ubicacion'] = $v['FECHA_INI_UBICACION'] . '<br>' . $v['FECHA_FIN_UBICACION'];
             $data[$k]['vivienda'] = $v['FECHA_INI_VIVIENDA'] . '<br>' . $v['FECHA_FIN_VIVIENDA'];
             $data[$k]['hogar'] = $v['FECHA_INI_HOGAR'] . '<br>' . $v['FECHA_FIN_HOGAR'];
-            $data[$k]['personas'] = $v['FECHA_INI_PERSONAS'] . '<br>' . $v['FECHA_FIN_PERSONAS'];
+            $data[$k]['personas'] = $v['FECHA_CERTI'];
             $data[$k]['diligenciar'] = $diligencia ;
         }
         $response['data'] = $data;

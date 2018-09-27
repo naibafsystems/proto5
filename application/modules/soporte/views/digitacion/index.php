@@ -49,7 +49,7 @@ if(!empty($msgErrorFD)) {
                                     <th>Ubicacion</th>
                                     <th>Vivienda</th>
                                     <th>Hogar</th>
-                                    <th>Personas</th>
+                                    <th>Entrevista</th>
                                     <th>Diligenciar</th>
                                 </tr>
                             </thead>

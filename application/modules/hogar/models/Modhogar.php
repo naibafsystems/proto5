@@ -572,7 +572,7 @@ class Modhogar extends My_model {
         $cond = '';
         $i = 0;
         
-        $sql = "SELECT admusu.USUARIO, admusu.NOMBRES, admusu.APELLIDOS, viv.UI1_NROFOR AS numero_formulario, viv.U_DPTO AS depto_divipola, viv.U_MPIO AS municipio_divipola, viv.V_TOT_HOG as total_hogares, ctrl.FECHA_REGISTRO as fecha_inicio_digitacion, ctrl.FECHA_CERTI AS fecha_fin_digitacion, 
+        $sql = "SELECT admusu.USUARIO, admusu.NOMBRES, admusu.APELLIDOS, viv.UI1_NROFOR AS numero_formulario, viv.U_DPTO AS depto_divipola, viv.U_MPIO AS municipio_divipola, viv.V_TOT_HOG as total_hogares, ctrl.FECHA_REGISTRO as fecha_inicio_digitacion, ctrl.FECHA_CERTI AS fecha_fin_digitacion, ctrl.FECHA_CERTI, 
             (SELECT count(*) FROM WCP_PERSONAS_HOGAR pshog WHERE viv.COD_ENCUESTAS=pshog.COD_ENCUESTAS) AS cantidad_personas,
             (SELECT count(*) FROM WCP_PERSONAS_HOGAR pshog WHERE viv.COD_ENCUESTAS=pshog.COD_ENCUESTAS AND pshog.P_SEXO is not null) AS cantidad_personas_digitadas
             FROM wcp_vivienda viv
